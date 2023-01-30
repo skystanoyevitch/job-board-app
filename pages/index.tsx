@@ -24,7 +24,7 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main>
+			<main className="">
 				<nav className="container mx-auto flex justify-between items-center">
 					<div className="flex space-x-8">
 						{navLinks.map((link, i) => (
@@ -40,10 +40,28 @@ export default function Home() {
 						Post Job for Free
 					</button>
 				</nav>
-        <div className="container mx-auto mt-40 text-center">
-          <h1 className="text-5xl font-black">FIND THE LATEST TECH JOBS</h1>
-          <h3>Job Board cureated for developers</h3>
-        </div>
+				<div className="container mx-auto mt-40 text-center">
+					<h1 className="text-5xl font-black">
+						FIND THE LATEST TECH JOBS
+					</h1>
+					<h3>Job Board cureated for developers</h3>
+				</div>
+				<form
+					action="POST"
+					className="container mx-auto flex justify-center space-x-10 mt-20"
+				>
+					<input
+						type="text"
+						className="input input-bordered input-lg"
+						placeholder="keyword"
+					/>
+
+					<input
+						type="text"
+						className="input input-bordered input-lg"
+						placeholder="location"
+					/>
+				</form>
 			</main>
 		</>
 	);
