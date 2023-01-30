@@ -5,7 +5,7 @@ import * as React from "react";
 export default function AddCompaniesComponent() {
 	return (
 		<div>
-			<h1>Add your Compony here!</h1>
+			<h1 className="text-3xl text-green-600">Add your Company here!</h1>
 		</div>
 	);
 }
