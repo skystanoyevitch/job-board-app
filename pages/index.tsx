@@ -52,7 +52,7 @@ export default function Home() {
 					<h1 className="text-5xl font-black">
 						FIND THE LATEST TECH JOBS
 					</h1>
-					<h3>Job Board cureated for developers</h3>
+					<h3>Job Board curated for developers</h3>
 				</div>
 				<form
 					action="POST"
