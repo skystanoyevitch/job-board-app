@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,6 +11,13 @@ const navLinks = [
 ];
 
 export default function Home() {
+	const router = useRouter();
+
+	const handleClick = (e: any) => {
+		console.log("button clicked!");
+		router.push("/AddJobPage");
+	};
+
 	return (
 		<>
 			<Head>
@@ -24,8 +32,8 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main className="">
-				<nav className="container mx-auto flex justify-between items-center">
+			<main className="container mx-auto">
+				<nav className="flex justify-between items-center">
 					<div className="flex space-x-8">
 						{navLinks.map((link, i) => (
 							<ul key={i}>
@@ -36,11 +44,11 @@ export default function Home() {
 						))}
 					</div>
 
-					<button type="button" className="btn">
+					<button type="button" className="btn" onClick={handleClick}>
 						Post Job for Free
 					</button>
 				</nav>
-				<div className="container mx-auto mt-40 text-center">
+				<div className="mt-40 text-center">
 					<h1 className="text-5xl font-black">
 						FIND THE LATEST TECH JOBS
 					</h1>
@@ -48,19 +56,35 @@ export default function Home() {
 				</div>
 				<form
 					action="POST"
-					className="container mx-auto flex justify-center space-x-10 mt-20"
+					className="mt-20 container mx-auto w-1/2 form-control"
 				>
-					<input
-						type="text"
-						className="input input-bordered input-lg"
-						placeholder="keyword"
-					/>
+					<div className="flex justify-center space-x-10">
+						<input
+							type="text"
+							className="input input-bordered w-full input-lg"
+							placeholder="keyword"
+						/>
 
-					<input
-						type="text"
-						className="input input-bordered input-lg"
-						placeholder="location"
-					/>
+						<input
+							type="text"
+							className="input input-bordered w-full input-lg"
+							placeholder="location"
+						/>
+					</div>
+
+					<div className="flex">
+						<label
+							htmlFor="remote"
+							className=" label cursor-pointer"
+						>
+							<span className="label-text p-2">Remote</span>
+							<input
+								type="checkbox"
+								name="remote"
+								className="toggle toggle-success"
+							/>
+						</label>
+					</div>
 				</form>
 			</main>
 		</>
