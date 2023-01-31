@@ -4,8 +4,12 @@ import * as React from "react";
 
 export default function AddJobsComponent() {
 	return (
-		<div>
-			<h1 className="">Add a Job for free!</h1>
-		</div>
+		<>
+			<section className="container mx-auto">
+				<h1 className="text-center text-5xl font-black p-20">
+					Add a Job for free
+				</h1>
+			</section>
+		</>
 	);
 }
