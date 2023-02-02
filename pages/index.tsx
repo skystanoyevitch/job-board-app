@@ -1,23 +1,9 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { JobSearch } from "@/components/JobSearch/JobSearch";
 
-const inter = Inter({ subsets: ["latin"] });
-
-const navLinks = [
-  { id: 0, name: "Home", url: "/" },
-  { id: 1, name: "Companies", url: "/AddCompaniesPage" },
-];
 
 export default function Home() {
-  const router = useRouter();
-
-  const handleClick = (e: any) => {
-    console.log("button clicked!");
-    router.push("/AddJobPage");
-  };
-
   return (
     <>
       <Head>
@@ -26,55 +12,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container mx-auto">
-        <nav className="flex justify-between items-center">
-          <div className="flex space-x-8">
-            {navLinks.map((link, i) => (
-              <ul key={i}>
-                <li>
-                  <Link href={link.url}>{link.name}</Link>
-                </li>
-              </ul>
-            ))}
-          </div>
-
-          <button type="button" className="btn" onClick={handleClick}>
-            Post Job for Free
-          </button>
-        </nav>
-        <div className="mt-40 text-center">
+      <main className="container mx-auto h-screen mt-20">
+        <div className="text-center">
           <h1 className="text-5xl font-black">FIND THE LATEST TECH JOBS</h1>
           <h3>Job Board curated for developers</h3>
         </div>
-        <form
-          action="POST"
-          className="mt-20 container mx-auto w-1/2 form-control"
-        >
-          <div className="flex justify-center space-x-10">
-            <input
-              type="text"
-              className="input input-bordered w-full input-lg"
-              placeholder="keyword"
-            />
-
-            <input
-              type="text"
-              className="input input-bordered w-full input-lg"
-              placeholder="location"
-            />
-          </div>
-
-          <div className="flex">
-            <label htmlFor="remote" className=" label cursor-pointer">
-              <span className="label-text p-2">Remote</span>
-              <input
-                type="checkbox"
-                name="remote"
-                className="toggle toggle-success"
-              />
-            </label>
-          </div>
-        </form>
+        <JobSearch />
       </main>
     </>
   );
