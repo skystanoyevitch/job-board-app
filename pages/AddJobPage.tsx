@@ -1,27 +1,44 @@
 import { AddJobForm } from "@/components/addJob/AddJobForm";
 import React, { useState } from "react";
-// TODO: call import function from the API
-import { addJob } from "./api/jobs";
 export interface IAddJobPageProps {}
+import { createJobType } from "@/types/mongodb.connect";
+
+// export type createJobType = {
+//   title: string;
+//   remote: boolean;
+//   experience: boolean;
+//   employmentType: boolean;
+//   companyName: string;
+//   applicationUrl: string;
+//   userEmail: string;
+// };
+
+const createJob: createJobType = {
+  title: "",
+  remote: false,
+  experience: false,
+  employmentType: false,
+  companyName: "",
+  applicationUrl: "",
+  userEmail: "",
+};
 
 export default function AddJobPage(props: IAddJobPageProps) {
-  const [title, setTitle] = useState("");
   const [editor, setEditor] = useState("");
-  const [remote, setRemote] = useState(false);
-  const [experience, setExperience] = useState(false);
-  const [employmentType, setEmploymentType] = useState(false);
-
-  console.log(title);
+  const [job, setJob] = useState(createJob);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log("button clicked!");
 
     const newJob = {
-      title: title,
-      remote: remote,
-      experience: experience,
-      employmentType: employmentType,
+      title: job.title,
+      remote: job.remote,
+      experience: job.experience,
+      employmentType: job.employmentType,
+      companyName: job.companyName,
+      applicationUrl: job.applicationUrl,
+      userEmail: job.userEmail,
     };
     const response = await fetch("http://localhost:3000/api/jobs", {
       method: "POST",
@@ -43,14 +60,16 @@ export default function AddJobPage(props: IAddJobPageProps) {
         </h1>
         <AddJobForm
           handleSubmit={handleSubmit}
-          title={title}
-          setTitle={setTitle}
-          setRemote={setRemote}
-          setExperience={setExperience}
-          setEmploymentType={setEmploymentType}
-          remote={remote}
-          experience={experience}
-          employmentType={employmentType}
+          job={job}
+          setJob={setJob}
+          // title={title}
+          // setTitle={setTitle}
+          // setRemote={setRemote}
+          // setExperience={setExperience}
+          // setEmploymentType={setEmploymentType}
+          // remote={remote}
+          // experience={experience}
+          // employmentType={employmentType}
         />
       </section>
     </>
