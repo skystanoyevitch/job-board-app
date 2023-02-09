@@ -1,3 +1,4 @@
+import { createJobType } from "@/pages/AddJobPage";
 import React, { Dispatch, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -5,29 +6,11 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 //types
 export interface IAddJobFormProps {
   handleSubmit: (e: React.SyntheticEvent) => void;
-  title: string;
-  setTitle: Dispatch<React.SetStateAction<string>>;
-  setRemote: Dispatch<React.SetStateAction<boolean>>;
-  setExperience: Dispatch<React.SetStateAction<boolean>>;
-  setEmploymentType: Dispatch<React.SetStateAction<boolean>>;
-  remote: boolean;
-  experience: boolean;
-  employmentType: boolean;
+  job: createJobType;
+  setJob: React.Dispatch<React.SetStateAction<createJobType>>;
 }
 
-export function AddJobForm({
-  handleSubmit,
-  title,
-  setTitle,
-  setRemote,
-  setExperience,
-  setEmploymentType,
-  remote,
-  experience,
-  employmentType,
-}: IAddJobFormProps) {
-  // const [title, setTitle] = useState("");
-  // const [editor, setEditor] = useState("");
+export function AddJobForm({ handleSubmit, job, setJob }: IAddJobFormProps) {
   return (
     <>
       <form
@@ -40,8 +23,8 @@ export function AddJobForm({
             type="text"
             className="input input-bordered w-full input-lg"
             placeholder="title"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
+            onChange={(e) => setJob({ ...job, title: e.target.value })}
+            value={job.title}
           />
           {/* <button type="button" className="btn" onClick={handleClick}>
             Set Title
@@ -53,7 +36,7 @@ export function AddJobForm({
             <input
               type="checkbox"
               className="checkbox checkbox-success"
-              onChange={() => setRemote(!remote)}
+              onChange={() => setJob({ ...job, remote: !job.remote })}
             />
           </label>
         </div>
@@ -65,7 +48,7 @@ export function AddJobForm({
               <input
                 type="checkbox"
                 className="checkbox checkbox-success"
-                onChange={() => setExperience(!experience)}
+                onChange={() => setJob({ ...job, experience: !job.experience })}
               />
             </label>
           </div>
@@ -78,7 +61,9 @@ export function AddJobForm({
               <input
                 type="checkbox"
                 className="checkbox checkbox-success"
-                onChange={() => setEmploymentType(!employmentType)}
+                onChange={() =>
+                  setJob({ ...job, employmentType: !job.employmentType })
+                }
               />
             </label>
           </div>
@@ -106,6 +91,8 @@ export function AddJobForm({
               type="text"
               placeholder="Company name"
               className="input input-bordered w-full"
+              onChange={(e) => setJob({ ...job, companyName: e.target.value })}
+              value={job.companyName}
             />
           </div>
           <div className="collapse border collapse-arrow">
@@ -122,6 +109,10 @@ export function AddJobForm({
                 type="text"
                 placeholder="type here"
                 className="input input-bordered w-full"
+                onChange={(e) =>
+                  setJob({ ...job, applicationUrl: e.target.value })
+                }
+                value={job.applicationUrl}
               />
             </div>
           </div>
@@ -142,6 +133,8 @@ export function AddJobForm({
                 type="email"
                 placeholder=""
                 className="input input-bordered w-full"
+                onChange={(e) => setJob({ ...job, userEmail: e.target.value })}
+                value={job.userEmail}
               />
             </div>
           </div>
