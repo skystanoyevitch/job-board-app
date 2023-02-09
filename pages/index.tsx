@@ -16,19 +16,24 @@ export default function Home({ jobs }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container mx-auto h-screen mt-20">
+      <main className="container mx-auto mt-20">
         <div className="text-center">
           <h1 className="text-5xl font-black">FIND THE LATEST TECH JOBS</h1>
           <h3>Job Board curated for developers</h3>
         </div>
         <JobSearch />
-        <div className="text-center">
+        <div className="container mx-auto w-1/2">
           {jobs.map((job: any, index: any) => (
-            <div key={index}>
-              {job.title} - {job.remote && "true"} -{" "}
-              {job.experience && "experienced"} -{" "}
-              {job.employmentType && "Employed"} - {job.companyName} -{" "}
-              {job.userEmail}
+            <div key={index} className="collapse border collapse-arrow">
+              <input type="checkbox" />
+              <div className="collapse-title">
+                <p className="text-blue-700 font-semibold">{job.companyName}</p>
+                <h1 className="text-xl font-semibold text-gray-700 pb-2">{job.title}</h1>
+                <div>{job.remote && <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 font-semibold text-sm">remote</span>}</div>
+              </div>
+              <div className="collapse-content">
+                <p>this is some random info about the job posting</p>
+              </div>
             </div>
           ))}
         </div>
