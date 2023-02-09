@@ -1,9 +1,13 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
 import { JobSearch } from "@/components/JobSearch/JobSearch";
+import { getJobs } from "./api/jobs";
+// import clientPromise from "@/database/mongodb.connect";
 
+// type Props = {
+//   jobs: [job]
+// }
 
-export default function Home() {
+export default function Home({ jobs }: any) {
   return (
     <>
       <Head>
@@ -18,7 +22,25 @@ export default function Home() {
           <h3>Job Board curated for developers</h3>
         </div>
         <JobSearch />
+        <div className="text-center">
+          {jobs.map((job: any, index: any) => (
+            <div key={index}>{job.title}</div>
+          ))}
+        </div>
       </main>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  try {
+    const data = await getJobs();
+    // let res = await fetch("http://localhost:3000/api/jobs");
+    // let data = await res.json();
+    return {
+      props: { jobs: data },
+    };
+  } catch (e) {
+    console.error(e);
+  }
 }
