@@ -2,7 +2,6 @@ import { AddJobForm } from "@/components/addJob/AddJobForm";
 import { useState } from "react";
 // TODO: call import function from the API
 import { addJob } from "./api/jobs";
-// import clientPromise from "@/database/mongodb.connect";
 export interface IAddJobPageProps {}
 
 export default function AddJobPage(props: IAddJobPageProps) {
