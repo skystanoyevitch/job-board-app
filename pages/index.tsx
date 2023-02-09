@@ -27,7 +27,8 @@ export default function Home({ jobs }: any) {
             <div key={index}>
               {job.title} - {job.remote && "true"} -{" "}
               {job.experience && "experienced"} -{" "}
-              {job.employmentType && "Employed"}
+              {job.employmentType && "Employed"} - {job.companyName} -{" "}
+              {job.userEmail}
             </div>
           ))}
         </div>
