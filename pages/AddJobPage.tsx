@@ -1,5 +1,5 @@
 import { AddJobForm } from "@/components/addJob/AddJobForm";
-import { useState } from "react";
+import React, { useState } from "react";
 // TODO: call import function from the API
 import { addJob } from "./api/jobs";
 export interface IAddJobPageProps {}
@@ -7,17 +7,21 @@ export interface IAddJobPageProps {}
 export default function AddJobPage(props: IAddJobPageProps) {
   const [title, setTitle] = useState("");
   const [editor, setEditor] = useState("");
+  const [remote, setRemote] = useState(false);
+  const [experience, setExperience] = useState(false);
+  const [employmentType, setEmploymentType] = useState(false);
 
   console.log(title);
 
-  const handleClick = async () => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
     console.log("button clicked!");
-
-    // TODO: get data from import
 
     const newJob = {
       title: title,
-      remote: true,
+      remote: remote,
+      experience: experience,
+      employmentType: employmentType,
     };
     const response = await fetch("http://localhost:3000/api/jobs", {
       method: "POST",
@@ -38,9 +42,15 @@ export default function AddJobPage(props: IAddJobPageProps) {
           Add a Job for free
         </h1>
         <AddJobForm
-          handleClick={handleClick}
+          handleSubmit={handleSubmit}
           title={title}
           setTitle={setTitle}
+          setRemote={setRemote}
+          setExperience={setExperience}
+          setEmploymentType={setEmploymentType}
+          remote={remote}
+          experience={experience}
+          employmentType={employmentType}
         />
       </section>
     </>
