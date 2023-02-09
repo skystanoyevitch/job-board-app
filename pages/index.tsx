@@ -1,11 +1,7 @@
 import Head from "next/head";
 import { JobSearch } from "@/components/JobSearch/JobSearch";
 import { getJobs } from "./api/jobs";
-// import clientPromise from "@/database/mongodb.connect";
-
-// type Props = {
-//   jobs: [job]
-// }
+// import { createJobType } from "@/types/mongodb.connect";
 
 export default function Home({ jobs }: any) {
   return (

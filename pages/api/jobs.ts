@@ -3,9 +3,7 @@ import { ObjectId } from "mongodb";
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createJobType } from "@/types/mongodb.connect";
 
-// type Data = {
-//   jobsCollection: []
-// }
+
 
 const database = 'job-board-database'
 

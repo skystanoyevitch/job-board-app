@@ -48,19 +48,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
         <h1 className="text-center text-5xl font-black pb-20">
           Add a Job for free
         </h1>
-        <AddJobForm
-          handleSubmit={handleSubmit}
-          job={job}
-          setJob={setJob}
-          // title={title}
-          // setTitle={setTitle}
-          // setRemote={setRemote}
-          // setExperience={setExperience}
-          // setEmploymentType={setEmploymentType}
-          // remote={remote}
-          // experience={experience}
-          // employmentType={employmentType}
-        />
+        <AddJobForm handleSubmit={handleSubmit} job={job} setJob={setJob} />
       </section>
     </>
   );
