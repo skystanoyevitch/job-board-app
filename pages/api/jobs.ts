@@ -38,10 +38,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const newJob = {
         title: req.body.title,
-        remote: req.body.remote
+        remote: req.body.remote,
+        experience: req.body.experience,
+        employmentType: req.body.employmentType
       }
       const insertedId = await addJob(newJob);
-      res.revalidate('/jobs')
+      // res.revalidate('/jobs')
       res.status(200).json(insertedId)
     } catch (error) {
       res.status(405).json(JSON.parse(JSON.stringify(error)))
