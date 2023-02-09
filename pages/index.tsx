@@ -24,7 +24,11 @@ export default function Home({ jobs }: any) {
         <JobSearch />
         <div className="text-center">
           {jobs.map((job: any, index: any) => (
-            <div key={index}>{job.title}</div>
+            <div key={index}>
+              {job.title} - {job.remote && "true"} -{" "}
+              {job.experience && "experienced"} -{" "}
+              {job.employmentType && "Employed"}
+            </div>
           ))}
         </div>
       </main>
