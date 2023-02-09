@@ -31,8 +31,12 @@ export function Navbar(props: NavProps) {
             ))}
           </div>
 
-          <button type="button" className="btn" onClick={handleClick}>
-            Post Job for Free
+          <button
+            type="button"
+            className="btn bg-indigo-600 border-none"
+            onClick={handleClick}
+          >
+            <span className="text-white">Post Job for Free</span>
           </button>
         </nav>
       </section>

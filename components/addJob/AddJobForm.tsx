@@ -1,7 +1,7 @@
-import { createJobType } from "@/pages/AddJobPage";
 import React, { Dispatch, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { createJobType } from "@/types/mongodb.connect";
 
 //types
 export interface IAddJobFormProps {

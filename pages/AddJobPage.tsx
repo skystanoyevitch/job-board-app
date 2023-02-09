@@ -3,16 +3,6 @@ import React, { useState } from "react";
 export interface IAddJobPageProps {}
 import { createJobType } from "@/types/mongodb.connect";
 
-// export type createJobType = {
-//   title: string;
-//   remote: boolean;
-//   experience: boolean;
-//   employmentType: boolean;
-//   companyName: string;
-//   applicationUrl: string;
-//   userEmail: string;
-// };
-
 const createJob: createJobType = {
   title: "",
   remote: false,

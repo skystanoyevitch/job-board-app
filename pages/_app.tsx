@@ -10,10 +10,10 @@ const navLinks = [
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className="h-screen">
       <Navbar navLinks={navLinks} />
       <Component {...pageProps} />
       <Footer />
-    </>
+    </div>
   );
 }
