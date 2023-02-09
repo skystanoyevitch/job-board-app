@@ -4,12 +4,28 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 //types
 export interface IAddJobFormProps {
-  handleClick: () => void;
+  handleSubmit: (e: React.SyntheticEvent) => void;
   title: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setTitle: Dispatch<React.SetStateAction<string>>;
+  setRemote: Dispatch<React.SetStateAction<boolean>>;
+  setExperience: Dispatch<React.SetStateAction<boolean>>;
+  setEmploymentType: Dispatch<React.SetStateAction<boolean>>;
+  remote: boolean;
+  experience: boolean;
+  employmentType: boolean;
 }
 
-export function AddJobForm({ handleClick, title, setTitle }: IAddJobFormProps) {
+export function AddJobForm({
+  handleSubmit,
+  title,
+  setTitle,
+  setRemote,
+  setExperience,
+  setEmploymentType,
+  remote,
+  experience,
+  employmentType,
+}: IAddJobFormProps) {
   // const [title, setTitle] = useState("");
   // const [editor, setEditor] = useState("");
   return (
@@ -17,7 +33,7 @@ export function AddJobForm({ handleClick, title, setTitle }: IAddJobFormProps) {
       <form
         action="POST"
         className="container mx-auto w-1/2 flex flex-col space-y-10"
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <div className="flex justify-center">
           <input
@@ -27,14 +43,18 @@ export function AddJobForm({ handleClick, title, setTitle }: IAddJobFormProps) {
             onChange={(e) => setTitle(e.target.value)}
             value={title}
           />
-          <button type="button" className="btn" onClick={handleClick}>
+          {/* <button type="button" className="btn" onClick={handleClick}>
             Set Title
-          </button>
+          </button> */}
         </div>
         <div className="">
           <label className="cursor-pointer flex space-x-4">
             <span className="label-text">Remote</span>
-            <input type="checkbox" className="checkbox checkbox-success" />
+            <input
+              type="checkbox"
+              className="checkbox checkbox-success"
+              onChange={() => setRemote(!remote)}
+            />
           </label>
         </div>
         <div className="">
@@ -42,7 +62,11 @@ export function AddJobForm({ handleClick, title, setTitle }: IAddJobFormProps) {
           <div className="mt-6">
             <label className="cursor-pointer flex space-x-4">
               <span className="label-text">Entry Level</span>
-              <input type="checkbox" className="checkbox checkbox-success" />
+              <input
+                type="checkbox"
+                className="checkbox checkbox-success"
+                onChange={() => setExperience(!experience)}
+              />
             </label>
           </div>
         </div>
@@ -51,7 +75,11 @@ export function AddJobForm({ handleClick, title, setTitle }: IAddJobFormProps) {
           <div className="mt-6">
             <label className="cursor-pointer flex space-x-4">
               <span className="label-text">Part Time</span>
-              <input type="checkbox" className="checkbox checkbox-success" />
+              <input
+                type="checkbox"
+                className="checkbox checkbox-success"
+                onChange={() => setEmploymentType(!employmentType)}
+              />
             </label>
           </div>
         </div>
@@ -118,6 +146,9 @@ export function AddJobForm({ handleClick, title, setTitle }: IAddJobFormProps) {
             </div>
           </div>
         </div>
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     </>
   );
