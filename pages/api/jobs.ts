@@ -1,6 +1,7 @@
 import clientPromise from "@/database/mongodb.connect";
 import { ObjectId } from "mongodb";
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { createJobType } from "@/types/mongodb.connect";
 
 // type Data = {
 //   jobsCollection: []
@@ -36,11 +37,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   } else if(req.method === "POST") {
     try {
-      const newJob = {
+      const newJob: createJobType = {
         title: req.body.title,
         remote: req.body.remote,
         experience: req.body.experience,
-        employmentType: req.body.employmentType
+        employmentType: req.body.employmentType,
+        companyName: req.body.companyName,
+        applicationUrl: req.body.applicationUrl,
+        userEmail: req.body.userEmail
       }
       const insertedId = await addJob(newJob);
       // res.revalidate('/jobs')
