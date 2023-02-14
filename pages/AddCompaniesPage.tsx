@@ -1,5 +1,3 @@
-// import clientPromise from "@/database/mongodb.connect";
-
 // export interface IAppProps {}
 
 export default function AddCompaniesComponent() {
@@ -9,17 +7,3 @@ export default function AddCompaniesComponent() {
     </div>
   );
 }
-
-// export async function getStaticProps() {
-//   try {
-//     const client = await clientPromise;
-//     const db = client.db("job-board-database");
-//     const jobs = await db.collection("jobs").find({}).toArray();
-
-//     return {
-//       props: { jobs: JSON.parse(JSON.stringify(jobs)) },
-//     };
-//   } catch (e) {
-//     console.error(e);
-//   }
-// }
