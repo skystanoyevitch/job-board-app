@@ -13,7 +13,7 @@ const createJob: createJobType = {
   experience: "",
   employmentType: false,
   jobDescription: () => EditorState.createEmpty(),
-  company: { name: "", logoUrl: "" },
+  company: { name: "", logoUrl: null },
   applicationUrl: "",
   userEmail: "",
 };
