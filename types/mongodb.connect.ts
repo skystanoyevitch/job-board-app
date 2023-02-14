@@ -9,9 +9,13 @@ declare global {
 export type createJobType = {
   title: string;
   remote: boolean;
-  experience: boolean;
+  experience: string;
   employmentType: boolean;
-  companyName: string;
+  jobDescription: any; // TODO: possible type change in the future
+  company: {
+    name: string,
+    logoUrl: string
+  };
   applicationUrl: string;
   userEmail: string;
 };

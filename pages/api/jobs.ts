@@ -21,6 +21,8 @@ export const addJob = async (newJob: any): Promise<ObjectId> => {
   const db = client.db(database)
   const response = await db.collection('jobs').insertOne(newJob)
 
+  console.log(response)
+
   return response.insertedId
 }
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -40,7 +42,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         remote: req.body.remote,
         experience: req.body.experience,
         employmentType: req.body.employmentType,
-        companyName: req.body.companyName,
+        jobDescription: req.body.jobDescription,
+        company: req.body.company,
         applicationUrl: req.body.applicationUrl,
         userEmail: req.body.userEmail
       }
