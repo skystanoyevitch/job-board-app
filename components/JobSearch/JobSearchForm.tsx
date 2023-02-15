@@ -1,17 +1,23 @@
-export interface IJobSearchFormProps {}
+import { IJobSearchProps } from "@/types/jobTypes";
 
-export function JobSearchForm(props: IJobSearchFormProps) {
+export function JobSearchForm({
+  queryParams,
+  setQueryParams,
+  handleChange,
+}: IJobSearchProps) {
+  // const handleChange = (e: any) => {
+  //   setQueryParams(e.target.value);
+  //   console.log(queryParams);
+  // };
   return (
     <>
-      <form
-        action="POST"
-        className="mt-20 container mx-auto w-1/2 form-control"
-      >
+      <form action="" className="mt-20 container mx-auto w-1/2 form-control">
         <div className="flex justify-center space-x-10">
           <input
             type="text"
             className="input input-bordered w-full input-lg"
             placeholder="keyword"
+            onChange={handleChange}
           />
 
           <input
@@ -31,6 +37,9 @@ export function JobSearchForm(props: IJobSearchFormProps) {
             />
           </label>
         </div>
+        {/* <button type="submit" className="btn">
+          Submit
+        </button> */}
       </form>
     </>
   );
