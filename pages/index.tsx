@@ -1,8 +1,28 @@
 import Head from "next/head";
 import { JobSearch } from "@/components/JobSearch/JobSearch";
 import { getJobs } from "./api/jobs";
+// import Image from "next/image";
+import { useState } from "react";
 
 export default function Home({ jobs }: any) {
+  const [queryParams, setQueryParams] = useState("");
+  const [filteredJobs, setFilteredJobs] = useState([]);
+
+  const handleChange = (e: any) => {
+    setQueryParams(e.target.value);
+    // console.log(queryParams);
+
+    const getFilter = jobs.filter((job: any) => {
+      if (queryParams === "") return;
+      return job.title.toLowerCase().includes(queryParams.toLowerCase());
+    });
+
+    setFilteredJobs(getFilter);
+  };
+
+  // console.log(filteredJobs);
+
+  // console.log(jobs);
   return (
     <>
       <Head>
@@ -16,32 +36,118 @@ export default function Home({ jobs }: any) {
           <h1 className="text-5xl font-black">FIND THE LATEST TECH JOBS</h1>
           <h3>Job Board curated for developers</h3>
         </div>
-        <JobSearch />
+        <JobSearch
+          queryParams={queryParams}
+          setQueryParams={setQueryParams}
+          handleChange={handleChange}
+        />
 
         <div className="container mx-auto w-1/2">
-          {jobs.map((job: any, index: any) => (
-            <div key={index} className="collapse border collapse-arrow">
-              <input type="checkbox" />
-              <div className="collapse-title">
-                <p className="text-blue-700 font-semibold">{job.companyName}</p>
-                <h1 className="text-xl font-semibold text-gray-700 pb-2">
-                  {job.title}
-                </h1>
-                <div>
-                  {job.remote && (
-                    <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 font-semibold text-sm">
-                      remote
-                    </span>
-                  )}
+          <ul>
+            {queryParams === ""
+              ? "no matching search query"
+              : !filteredJobs.length
+              ? "your list did not return any results"
+              : filteredJobs.map((job: any) => (
+                  <div key={job._id} className="collapse border collapse-arrow">
+                    <input type="checkbox" />
+                    <div className="collapse-title">
+                      <div className="font-semibold text-blue-500">
+                        {job.company.name}
+                      </div>
+
+                      {/* {job.company.logoUrl && (
+                  // <Image
+                  //   src={`/${job.company.logoUrl.name}`}
+                  //   alt="default"
+                  //   height={100}
+                  //   width={100}
+                  // />
+                  // <div className="h-30 w-30">
+                  //   <img src={job.company.logoUrl} alt="default" />
+                  // </div>
+                )} */}
+                      <h1 className="text-xl font-semibold text-gray-700 pb-2">
+                        {job.title}
+                      </h1>
+                      <div className="space-x-4">
+                        {job.remote && (
+                          <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
+                            remote
+                          </span>
+                        )}
+                        {job.experience === "part time" && (
+                          <span className=" lg:px-[.3em] border-2 border-indigo-500 rounded-md text-indigo-500 text-sm">
+                            part time
+                          </span>
+                        )}
+                        {job.employmentType === "entry level" && (
+                          <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
+                            entry level
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div
+                      className="collapse-content"
+                      dangerouslySetInnerHTML={{ __html: job.jobDescription }}
+                    ></div>
+                  </div>
+                ))}
+          </ul>
+
+          {!filteredJobs.length && (
+            <div>
+              {jobs?.map((job: any, index: any) => (
+                <div key={index} className="collapse border collapse-arrow">
+                  <input type="checkbox" />
+                  <div className="collapse-title">
+                    <div className="font-semibold text-blue-500">
+                      {job.company.name}
+                    </div>
+
+                    {/* {job.company.logoUrl && (
+                  // <Image
+                  //   src={`/${job.company.logoUrl.name}`}
+                  //   alt="default"
+                  //   height={100}
+                  //   width={100}
+                  // />
+                  // <div className="h-30 w-30">
+                  //   <img src={job.company.logoUrl} alt="default" />
+                  // </div>
+                )} */}
+                    <h1 className="text-xl font-semibold text-gray-700 pb-2">
+                      {job.title}
+                    </h1>
+                    <div className="space-x-4">
+                      {job.remote && (
+                        <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
+                          remote
+                        </span>
+                      )}
+                      {job.experience === "part time" && (
+                        <span className=" lg:px-[.3em] border-2 border-indigo-500 rounded-md text-indigo-500 text-sm">
+                          part time
+                        </span>
+                      )}
+                      {job.employmentType === "entry level" && (
+                        <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
+                          entry level
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div
+                    className="collapse-content"
+                    dangerouslySetInnerHTML={{ __html: job.jobDescription }}
+                  ></div>
                 </div>
-              </div>
-              <div
-                className="collapse-content"
-                dangerouslySetInnerHTML={{ __html: job.jobDescription }}
-              ></div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
+        {/* <Image src={"/default-logo.jpg"} alt="default" height={130} width={130} /> */}
       </main>
     </>
   );
@@ -51,7 +157,7 @@ export async function getServerSideProps() {
   try {
     const data = await getJobs();
 
-    // console.log(data);
+    console.log(data);
     return {
       props: { jobs: data },
     };
