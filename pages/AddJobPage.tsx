@@ -1,12 +1,11 @@
 import { AddJobForm } from "@/components/addJob/AddJobForm";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 export interface IAddJobPageProps {}
 import { createJobType } from "@/types/mongodb.connect";
-import { convertFromRaw, EditorState } from "draft-js";
-import { convertToRaw } from "draft-js";
+import { EditorState } from "draft-js";
 import { convertToHTML } from "draft-convert";
-import { getJobs } from "./api/jobs";
 import { useRouter } from "next/router";
+
 const createJob: createJobType = {
   title: "",
   remote: false,
@@ -21,8 +20,6 @@ const createJob: createJobType = {
 export default function AddJobPage(props: IAddJobPageProps) {
   const [editor, setEditor] = useState(() => EditorState.createEmpty());
   const [job, setJob] = useState(createJob);
-  // const editorState = editor.getCurrentContent();
-  // const rawData = JSON.stringify(convertToRaw(editor.getCurrentContent()));
   const html = convertToHTML(editor.getCurrentContent());
 
   const router = useRouter();
@@ -69,8 +66,6 @@ export default function AddJobPage(props: IAddJobPageProps) {
           editor={editor}
           setEditor={setEditor}
         />
-
-        <div>{}</div>
       </section>
     </>
   );

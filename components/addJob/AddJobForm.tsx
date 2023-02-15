@@ -2,6 +2,7 @@ import React, { Dispatch, useState } from "react";
 import { Editor, EditorState } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createJobType } from "@/types/mongodb.connect";
+import Image from "next/image";
 
 //types
 export interface IAddJobFormProps {
@@ -19,6 +20,7 @@ export function AddJobForm({
   editor,
   setEditor,
 }: IAddJobFormProps) {
+  console.log(job.company.logoUrl);
   return (
     <>
       <form
@@ -133,13 +135,28 @@ export function AddJobForm({
               <input
                 type="file"
                 className="file-input file-input-bordered w-full"
-                onChange={(e) =>
+                onChange={(e) => {
+                  if (!e.target.files) return;
                   setJob({
                     ...job,
-                    company: { ...job.company, logoUrl: e.currentTarget.files },
-                  })
-                }
+                    company: {
+                      ...job.company,
+                      logoUrl: URL.createObjectURL(e.target.files[0]),
+                    },
+                  });
+                }}
               />
+              {/* {job.company.logoUrl && (
+                <div>
+                  <Image
+                    src={`/${job.company.logoUrl.name}`}
+                    alt="preview"
+                    height={60}
+                    width={60}
+                  />
+                  <img src={job.company.logoUrl} alt="default" />
+                </div>
+              )} */}
             </div>
           </div>
           <div className="collapse border collapse-arrow">
@@ -189,6 +206,12 @@ export function AddJobForm({
         <button type="submit" className="btn">
           Submit
         </button>
+        {/* <Image
+          src={job.company.logoUrl}
+          alt="default"
+          height={130}
+          width={130}
+        /> */}
       </form>
     </>
   );
