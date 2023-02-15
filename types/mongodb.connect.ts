@@ -14,7 +14,7 @@ export type createJobType = {
   jobDescription: any; // TODO: possible type change in the future
   company: {
     name: string,
-    logoUrl: FileList | null
+    logoUrl: any
   };
   applicationUrl: string;
   userEmail: string;
