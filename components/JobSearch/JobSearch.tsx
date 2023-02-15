@@ -2,13 +2,21 @@ import { useState } from "react";
 import { JobSearchForm } from "./JobSearchForm";
 import { JobSearchResults } from "./JobSearchResults";
 
-export interface IJobSearchProps {}
+//type imports
+import { IJobSearchProps } from "@/types/jobTypes";
 
-export function JobSearch(props: IJobSearchProps) {
-  // const [title, setTitle] = useState("");
+export function JobSearch({
+  queryParams,
+  setQueryParams,
+  handleChange,
+}: IJobSearchProps) {
   return (
     <div>
-      <JobSearchForm />
+      <JobSearchForm
+        queryParams={queryParams}
+        setQueryParams={setQueryParams}
+        handleChange={handleChange}
+      />
       <JobSearchResults />
     </div>
   );
