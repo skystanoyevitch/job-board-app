@@ -33,10 +33,10 @@ export function Navbar(props: NavProps) {
 
           <button
             type="button"
-            className="btn bg-indigo-600 border-none"
+            className="btn btn-outline btn-primary"
             onClick={handleClick}
           >
-            <span className="text-white">Post Job for Free</span>
+            <span className="">Post Job for Free</span>
           </button>
         </nav>
       </section>
