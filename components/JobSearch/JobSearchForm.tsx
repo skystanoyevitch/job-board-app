@@ -27,23 +27,23 @@ export function JobSearchForm({
           />
         </div>
 
-        <div className="flex my-4 space-x-4">
-          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+        <div className="flex my-4 space-x-4 justify-center">
+          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
             remote
           </div>
-          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
             full time
           </div>
-          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
             part time
           </div>
-          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
             entry level
           </div>
-          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
             senior
           </div>
-          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
             mid level
           </div>
         </div>

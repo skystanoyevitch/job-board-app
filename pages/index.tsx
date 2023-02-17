@@ -33,8 +33,10 @@ export default function Home({ jobs }: any) {
       </Head>
       <main className="container mx-auto mt-20">
         <div className="text-center">
-          <h1 className="text-5xl font-black">FIND THE LATEST TECH JOBS</h1>
-          <h3>Job Board curated for developers</h3>
+          <h1 className="lg:text-6xl font-black pb-4">
+            FIND THE LATEST TECH JOBS
+          </h1>
+          <h3 className="text-xl">a job board curated for developers</h3>
         </div>
         <JobSearch
           queryParams={queryParams}
@@ -43,65 +45,13 @@ export default function Home({ jobs }: any) {
         />
         <div className="container mx-auto w-1/2">
           <ul>
-            {queryParams === ""
-              ? "no matching search query"
-              : !filteredJobs.length
-              ? "your list did not return any results"
-              : filteredJobs.map((job: any) => (
-                  <div key={job._id} className="collapse border collapse-arrow">
-                    <input type="checkbox" />
-                    <div className="collapse-title">
-                      <div className="text-sm text-blue-500">
-                        {job.company.name}
-                      </div>
-
-                      {/* {job.company.logoUrl && (
-                  // <Image
-                  //   src={`/${job.company.logoUrl.name}`}
-                  //   alt="default"
-                  //   height={100}
-                  //   width={100}
-                  // />
-                  // <div className="h-30 w-30">
-                  //   <img src={job.company.logoUrl} alt="default" />
-                  // </div>
-                )} */}
-                      <h1 className="text-xl font-semibold text-gray-700 pb-2">
-                        {job.title}
-                      </h1>
-                      <div className="space-x-4">
-                        {job.remote && (
-                          <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
-                            remote
-                          </span>
-                        )}
-                        {job.experience === "part time" && (
-                          <span className=" lg:px-[.3em] border-2 border-indigo-500 rounded-md text-indigo-500 text-sm">
-                            part time
-                          </span>
-                        )}
-                        {job.employmentType === "entry level" && (
-                          <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
-                            entry level
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <div
-                      className="collapse-content"
-                      dangerouslySetInnerHTML={{ __html: job.jobDescription }}
-                    ></div>
-                  </div>
-                ))}
-          </ul>
-
-          {!filteredJobs.length && (
-            <div>
-              {jobs?.map((job: any, index: any) => (
-                <div key={index} className="collapse border collapse-arrow p-4">
-                  <input type="checkbox" />
+            {/* {queryParams && <div></div>} */}
+            {queryParams !== "" ? (
+              filteredJobs.map((job: any) => (
+                <div key={job._id} className="collapse border collapse-arrow">
+                  <input type="checkbox" className="" />
                   <div className="collapse-title">
-                    <div className="text-sm font-semibold text-blue-500">
+                    <div className="text-sm text-blue-500">
                       {job.company.name}
                     </div>
 
@@ -116,22 +66,128 @@ export default function Home({ jobs }: any) {
                   //   <img src={job.company.logoUrl} alt="default" />
                   // </div>
                 )} */}
-                    <h1 className="text-2xl font-semibold text-gray-700 pb-2">
+                    <h1 className="text-xl font-semibold text-gray-700 pb-2 dark:text-white">
                       {job.title}
                     </h1>
                     <div className="space-x-4">
                       {job.remote && (
-                        <span className=" lg:px-[.4em] lg:py-[.3em] rounded-md bg-cyan-500 text-sm">
+                        <span className=" lg:px-[.6em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
                           remote
                         </span>
                       )}
                       {job.experience === "part time" && (
-                        <span className=" lg:px-[.4em] lg:py-[.3em] bg-indigo-500 rounded-md text-sm">
+                        <span className=" lg:px-[.3em] border-2 border-indigo-500 rounded-md text-indigo-500 text-sm">
                           part time
                         </span>
                       )}
                       {job.employmentType === "entry level" && (
-                        <span className=" lg:px-[.4em] lg:py-[.3em] rounded-md bg-cyan-500 text-sm">
+                        <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
+                          entry level
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div
+                    className="collapse-content"
+                    dangerouslySetInnerHTML={{ __html: job.jobDescription }}
+                  ></div>
+                </div>
+              ))
+            ) : (
+              <div className="mt-14">
+                {jobs?.map((job: any, index: any) => (
+                  <div
+                    key={index}
+                    className="collapse border collapse-arrow p-2"
+                  >
+                    <input type="checkbox" className="" />
+                    <div className="collapse-title">
+                      <div className="text-sm font-semibold text-blue-500">
+                        {job.company.name}
+                      </div>
+                      <div className="pb-2">
+                        <h1 className="text-2xl font-regular text-gray-700 dark:text-white">
+                          {job.title}
+                        </h1>
+                        <h3 className="text-sm">{job.jobLocation}</h3>
+                      </div>
+
+                      <div className="space-x-4">
+                        {job.remote && (
+                          <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                            remote
+                          </span>
+                        )}
+                        {job.experience === "part time" && (
+                          <span className=" lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                            part time
+                          </span>
+                        )}
+                        {job.employmentType === "entry level" && (
+                          <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs ">
+                            entry level
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="collapse-content">
+                      <div
+                        className="pt-8"
+                        dangerouslySetInnerHTML={{ __html: job.jobDescription }}
+                      ></div>
+                      <div className="flex justify-between pt-6">
+                        <a
+                          href={job.applicationUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <button
+                            type="button"
+                            className="btn btn-outline btn-primary"
+                          >
+                            APPLY NOW
+                          </button>
+                        </a>
+                        <button type="button" className="btn btn-outline">
+                          MORE INFO
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </ul>
+
+          {/* {!filteredJobs.length && (
+            <div className="mt-14">
+              {jobs?.map((job: any, index: any) => (
+                <div key={index} className="collapse border collapse-arrow p-2">
+                  <input type="checkbox" className="" />
+                  <div className="collapse-title">
+                    <div className="text-sm font-semibold text-blue-500">
+                      {job.company.name}
+                    </div>
+                    <div className="pb-2">
+                      <h1 className="text-2xl font-regular text-gray-700 dark:text-white">
+                        {job.title}
+                      </h1>
+                      <h3 className="text-sm">{job.jobLocation}</h3>
+                    </div>
+
+                    <div className="space-x-4">
+                      {job.remote && (
+                        <span className=" lg:px-[.7em] lg:py-[.3em] rounded-md bg-cyan-200 text-xs text-cyan-800">
+                          remote
+                        </span>
+                      )}
+                      {job.experience === "part time" && (
+                        <span className=" lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-md text-xs text-indigo-800 ">
+                          part time
+                        </span>
+                      )}
+                      {job.employmentType === "entry level" && (
+                        <span className=" lg:px-[.7em] lg:py-[.3em] rounded-md bg-cyan-500 text-xs ">
                           entry level
                         </span>
                       )}
@@ -163,14 +219,8 @@ export default function Home({ jobs }: any) {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
         </div>
-        {/* <Image src={"/default-logo.jpg"} alt="default" height={130} width={130} /> */}
-        <a href="https://www.servicenow.com/" target="_blank" rel="noreferrer">
-          <button type="button" className="btn btn-outline btn-primary">
-            APPLY NOW
-          </button>
-        </a>
       </main>
     </>
   );
@@ -187,4 +237,18 @@ export async function getServerSideProps() {
   } catch (e) {
     console.error(e);
   }
+}
+
+{
+  /* {job.company.logoUrl && (
+                  // <Image
+                  //   src={`/${job.company.logoUrl.name}`}
+                  //   alt="default"
+                  //   height={100}
+                  //   width={100}
+                  // />
+                  // <div className="h-30 w-30">
+                  //   <img src={job.company.logoUrl} alt="default" />
+                  // </div>
+                )} */
 }
