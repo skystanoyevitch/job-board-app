@@ -27,19 +27,26 @@ export function JobSearchForm({
           />
         </div>
 
-        <div className="flex">
-          <label htmlFor="remote" className=" label cursor-pointer">
-            <span className="label-text p-2">Remote</span>
-            <input
-              type="checkbox"
-              name="remote"
-              className="toggle toggle-success"
-            />
-          </label>
+        <div className="flex my-4 space-x-4">
+          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+            remote
+          </div>
+          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+            full time
+          </div>
+          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+            part time
+          </div>
+          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+            entry level
+          </div>
+          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+            senior
+          </div>
+          <div className="badge badge-outline rounded-md p-4 cursor-pointer">
+            mid level
+          </div>
         </div>
-        {/* <button type="submit" className="btn">
-          Submit
-        </button> */}
       </form>
     </>
   );
