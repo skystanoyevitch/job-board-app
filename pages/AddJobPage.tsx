@@ -12,6 +12,7 @@ const createJob: createJobType = {
   experience: "",
   employmentType: false,
   jobDescription: () => EditorState.createEmpty(),
+  jobLocation: [],
   company: { name: "", logoUrl: null },
   applicationUrl: "",
   userEmail: "",
@@ -28,13 +29,13 @@ export default function AddJobPage(props: IAddJobPageProps) {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     // console.log(html);
-
     const newJob = {
       title: job.title,
       remote: job.remote,
       experience: job.experience,
       employmentType: job.employmentType,
       jobDescription: html,
+      jobLocation: job.jobLocation,
       company: job.company,
       applicationUrl: job.applicationUrl,
       userEmail: job.userEmail,

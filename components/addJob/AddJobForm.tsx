@@ -1,8 +1,9 @@
-import React, { Dispatch, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { Editor, EditorState } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createJobType } from "@/types/mongodb.connect";
-import Image from "next/image";
+import { error } from "console";
+// import Image from "next/image";
 
 //types
 export interface IAddJobFormProps {
@@ -20,7 +21,6 @@ export function AddJobForm({
   editor,
   setEditor,
 }: IAddJobFormProps) {
-  // console.log(job.company.logoUrl);
   return (
     <>
       <form
@@ -35,6 +35,23 @@ export function AddJobForm({
             placeholder="title"
             onChange={(e) => setJob({ ...job, title: e.target.value })}
             value={job.title}
+          />
+        </div>
+        <div className="w-full">
+          <label className="label">
+            <span className="label-text">Location</span>
+          </label>
+          <input
+            type="text"
+            className="input input-bordered w-full input-lg"
+            placeholder="location"
+            onChange={(e) =>
+              setJob({
+                ...job,
+                jobLocation: [e.target.value],
+              })
+            }
+            value={job.jobLocation}
           />
         </div>
         <div className="">
