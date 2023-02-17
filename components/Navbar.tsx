@@ -14,7 +14,7 @@ export interface NavProps {
 export function Navbar(props: NavProps) {
   const router = useRouter();
   const handleClick = (e: any) => {
-    console.log("button clicked!");
+    // console.log("button clicked!");
     router.push("/AddJobPage");
   };
   return (

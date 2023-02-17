@@ -21,7 +21,7 @@ export const addJob = async (newJob: any): Promise<ObjectId> => {
   const db = client.db(database)
   const response = await db.collection('jobs').insertOne(newJob)
 
-  console.log(response)
+  // console.log(response)
 
   return response.insertedId
 }

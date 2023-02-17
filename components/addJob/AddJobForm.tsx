@@ -20,7 +20,7 @@ export function AddJobForm({
   editor,
   setEditor,
 }: IAddJobFormProps) {
-  console.log(job.company.logoUrl);
+  // console.log(job.company.logoUrl);
   return (
     <>
       <form
@@ -52,19 +52,19 @@ export function AddJobForm({
           <div className="mt-6 flex">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge badge-lg badge-accent badge-outline"
+                className="badge badge-lg rounded-md badge-accent badge-outline"
                 onClick={() => setJob({ ...job, experience: "entry level" })}
               >
                 entry level
               </div>
               <div
-                className="badge badge-lg badge-secondary badge-outline"
+                className="badge badge-lg rounded-md badge-secondary badge-outline"
                 onClick={() => setJob({ ...job, experience: "mid level" })}
               >
                 mid level
               </div>
               <div
-                className="badge badge-lg badge-accent badge-outline"
+                className="badge badge-lg rounded-md badge-accent badge-outline"
                 onClick={() => setJob({ ...job, experience: "senior level" })}
               >
                 senior level
@@ -77,19 +77,19 @@ export function AddJobForm({
           <div className="mt-6">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge badge-lg badge-outline"
+                className="badge badge-lg rounded-md badge-outline"
                 onClick={() => setJob({ ...job, experience: "part time" })}
               >
                 part time
               </div>
               <div
-                className="badge badge-lg badge-outline"
+                className="badge badge-lg rounded-md badge-outline"
                 onClick={() => setJob({ ...job, experience: "full time" })}
               >
                 full time
               </div>
               <div
-                className="badge badge-lg badge-outline"
+                className="badge badge-lg rounded-md badge-outline"
                 onClick={() => setJob({ ...job, experience: "contract" })}
               >
                 contract
@@ -103,7 +103,7 @@ export function AddJobForm({
             editorState={editor}
             onEditorStateChange={setEditor}
             toolbarClassName=""
-            wrapperClassName="h-96 rounded-md border border-opacity-20"
+            wrapperClassName="h-96 rounded-md border border-opacity-20 mt-6"
             editorClassName=""
           />
         </div>
