@@ -41,7 +41,6 @@ export default function Home({ jobs }: any) {
           setQueryParams={setQueryParams}
           handleChange={handleChange}
         />
-
         <div className="container mx-auto w-1/2">
           <ul>
             {queryParams === ""
@@ -52,7 +51,7 @@ export default function Home({ jobs }: any) {
                   <div key={job._id} className="collapse border collapse-arrow">
                     <input type="checkbox" />
                     <div className="collapse-title">
-                      <div className="font-semibold text-blue-500">
+                      <div className="text-sm text-blue-500">
                         {job.company.name}
                       </div>
 
@@ -99,10 +98,10 @@ export default function Home({ jobs }: any) {
           {!filteredJobs.length && (
             <div>
               {jobs?.map((job: any, index: any) => (
-                <div key={index} className="collapse border collapse-arrow">
+                <div key={index} className="collapse border collapse-arrow p-4">
                   <input type="checkbox" />
                   <div className="collapse-title">
-                    <div className="font-semibold text-blue-500">
+                    <div className="text-sm font-semibold text-blue-500">
                       {job.company.name}
                     </div>
 
@@ -117,37 +116,61 @@ export default function Home({ jobs }: any) {
                   //   <img src={job.company.logoUrl} alt="default" />
                   // </div>
                 )} */}
-                    <h1 className="text-xl font-semibold text-gray-700 pb-2">
+                    <h1 className="text-2xl font-semibold text-gray-700 pb-2">
                       {job.title}
                     </h1>
                     <div className="space-x-4">
                       {job.remote && (
-                        <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
+                        <span className=" lg:px-[.4em] lg:py-[.3em] rounded-md bg-cyan-500 text-sm">
                           remote
                         </span>
                       )}
                       {job.experience === "part time" && (
-                        <span className=" lg:px-[.3em] border-2 border-indigo-500 rounded-md text-indigo-500 text-sm">
+                        <span className=" lg:px-[.4em] lg:py-[.3em] bg-indigo-500 rounded-md text-sm">
                           part time
                         </span>
                       )}
                       {job.employmentType === "entry level" && (
-                        <span className=" lg:px-[.3em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
+                        <span className=" lg:px-[.4em] lg:py-[.3em] rounded-md bg-cyan-500 text-sm">
                           entry level
                         </span>
                       )}
                     </div>
                   </div>
-                  <div
-                    className="collapse-content"
-                    dangerouslySetInnerHTML={{ __html: job.jobDescription }}
-                  ></div>
+                  <div className="collapse-content">
+                    <div
+                      className="pt-8"
+                      dangerouslySetInnerHTML={{ __html: job.jobDescription }}
+                    ></div>
+                    <div className="flex justify-between pt-6">
+                      <a
+                        href={job.applicationUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <button
+                          type="button"
+                          className="btn btn-outline btn-primary"
+                        >
+                          APPLY NOW
+                        </button>
+                      </a>
+                      <button type="button" className="btn btn-outline">
+                        MORE INFO
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           )}
         </div>
         {/* <Image src={"/default-logo.jpg"} alt="default" height={130} width={130} /> */}
+        <a href="https://www.servicenow.com/" target="_blank" rel="noreferrer">
+          <button type="button" className="btn btn-outline btn-primary">
+            APPLY NOW
+          </button>
+        </a>
       </main>
     </>
   );
@@ -157,7 +180,7 @@ export async function getServerSideProps() {
   try {
     const data = await getJobs();
 
-    console.log(data);
+    // console.log(data);
     return {
       props: { jobs: data },
     };
