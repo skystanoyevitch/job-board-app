@@ -4,7 +4,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { createJobType } from "@/types/mongodb.connect";
 
 
-
 const database = 'job-board-database'
 
 export const getJobs = async () => {
@@ -43,6 +42,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         experience: req.body.experience,
         employmentType: req.body.employmentType,
         jobDescription: req.body.jobDescription,
+        jobLocation: req.body.jobLocation,
         company: req.body.company,
         applicationUrl: req.body.applicationUrl,
         userEmail: req.body.userEmail
