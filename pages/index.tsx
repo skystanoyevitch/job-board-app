@@ -50,8 +50,6 @@ export default function Home({ jobs }: any) {
         <JobSearch
           queryTitle={queryTitle}
           titleSearchResults={titleSearchResults}
-          // locationSearchResults={locationSearchResults}
-          // queryLocation={queryLocation}
         />
         <div className="container mx-auto w-1/2">
           <ul>
