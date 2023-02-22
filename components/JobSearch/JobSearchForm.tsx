@@ -1,14 +1,6 @@
 import { IJobSearchProps } from "@/types/jobTypes";
 
-export function JobSearchForm({
-  queryParams,
-  setQueryParams,
-  handleChange,
-}: IJobSearchProps) {
-  // const handleChange = (e: any) => {
-  //   setQueryParams(e.target.value);
-  //   console.log(queryParams);
-  // };
+export function JobSearchForm({ titleSearchResults }: IJobSearchProps) {
   return (
     <>
       <form action="" className="mt-20 container mx-auto w-1/2 form-control">
@@ -17,16 +9,18 @@ export function JobSearchForm({
             type="text"
             className="input input-bordered w-full input-lg"
             placeholder="keyword"
-            onChange={handleChange}
+            name="title"
+            onChange={titleSearchResults}
           />
 
           <input
             type="text"
             className="input input-bordered w-full input-lg"
             placeholder="location"
+            onChange={titleSearchResults}
+            name="jobLocation"
           />
         </div>
-
         <div className="flex my-4 space-x-4 justify-center">
           <div className="badge badge-outline rounded-none p-4 cursor-pointer">
             remote
