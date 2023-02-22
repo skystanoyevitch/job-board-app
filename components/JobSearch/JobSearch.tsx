@@ -6,16 +6,15 @@ import { JobSearchResults } from "./JobSearchResults";
 import { IJobSearchProps } from "@/types/jobTypes";
 
 export function JobSearch({
-  queryParams,
-  setQueryParams,
-  handleChange,
+  queryTitle,
+
+  titleSearchResults,
 }: IJobSearchProps) {
   return (
     <div>
       <JobSearchForm
-        queryParams={queryParams}
-        setQueryParams={setQueryParams}
-        handleChange={handleChange}
+        queryTitle={queryTitle}
+        titleSearchResults={titleSearchResults}
       />
       <JobSearchResults />
     </div>
