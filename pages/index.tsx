@@ -5,24 +5,33 @@ import { getJobs } from "./api/jobs";
 import { useState } from "react";
 
 export default function Home({ jobs }: any) {
-  const [queryParams, setQueryParams] = useState("");
+  const [queryTitle, setQueryTitle] = useState(jobs);
   const [filteredJobs, setFilteredJobs] = useState([]);
 
-  const handleChange = (e: any) => {
-    setQueryParams(e.target.value);
-    // console.log(queryParams);
+  const titleSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setQueryTitle({ [name]: value, [name]: value });
+    console.log(queryTitle.jobLocation);
 
-    const getFilter = jobs.filter((job: any) => {
-      if (queryParams === "") return;
-      return job.title.toLowerCase().includes(queryParams.toLowerCase());
-    });
-
-    setFilteredJobs(getFilter);
+    if (queryTitle.title !== "" || queryTitle.jobLocation !== "") {
+      const getFilter = jobs.filter((job: any) => {
+        const jobTitleSearch = job.title
+          .toLowerCase()
+          .includes(queryTitle.title?.toLowerCase());
+        const jobLocationSearch = job.jobLocation?.map(
+          (jobLocationString: any) => {
+            jobLocationString
+              .toLowerCase()
+              .includes(queryTitle.jobLocation?.toLowerCase());
+          }
+        );
+        if (queryTitle.title === "" || queryTitle.jobLocation === "") return;
+        return jobTitleSearch || jobLocationSearch;
+      });
+      setFilteredJobs(getFilter);
+    }
   };
 
-  // console.log(filteredJobs);
-
-  // console.log(jobs);
   return (
     <>
       <Head>
@@ -39,14 +48,14 @@ export default function Home({ jobs }: any) {
           <h3 className="text-xl">a job board curated for developers</h3>
         </div>
         <JobSearch
-          queryParams={queryParams}
-          setQueryParams={setQueryParams}
-          handleChange={handleChange}
+          queryTitle={queryTitle}
+          titleSearchResults={titleSearchResults}
+          // locationSearchResults={locationSearchResults}
+          // queryLocation={queryLocation}
         />
         <div className="container mx-auto w-1/2">
           <ul>
-            {/* {queryParams && <div></div>} */}
-            {queryParams !== "" ? (
+            {queryTitle.title || queryTitle.jobLocation ? (
               filteredJobs.map((job: any) => (
                 <div key={job._id} className="collapse border collapse-arrow">
                   <input type="checkbox" className="" />
@@ -54,21 +63,10 @@ export default function Home({ jobs }: any) {
                     <div className="text-sm text-blue-500">
                       {job.company.name}
                     </div>
-
-                    {/* {job.company.logoUrl && (
-                  // <Image
-                  //   src={`/${job.company.logoUrl.name}`}
-                  //   alt="default"
-                  //   height={100}
-                  //   width={100}
-                  // />
-                  // <div className="h-30 w-30">
-                  //   <img src={job.company.logoUrl} alt="default" />
-                  // </div>
-                )} */}
                     <h1 className="text-xl font-semibold text-gray-700 pb-2 dark:text-white">
                       {job.title}
                     </h1>
+                    <h3 className="text-sm">{job.jobLocation}</h3>
                     <div className="space-x-4">
                       {job.remote && (
                         <span className=" lg:px-[.6em] border-2 border-cyan-500 rounded-md text-cyan-500 text-sm">
@@ -87,15 +85,36 @@ export default function Home({ jobs }: any) {
                       )}
                     </div>
                   </div>
-                  <div
-                    className="collapse-content"
-                    dangerouslySetInnerHTML={{ __html: job.jobDescription }}
-                  ></div>
+                  <div className="collapse-content">
+                    <div
+                      className="pt-8"
+                      dangerouslySetInnerHTML={{
+                        __html: job.jobDescription,
+                      }}
+                    ></div>
+                    <div className="flex justify-between pt-6">
+                      <a
+                        href={job.applicationUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <button
+                          type="button"
+                          className="btn btn-outline btn-primary"
+                        >
+                          APPLY NOW
+                        </button>
+                      </a>
+                      <button type="button" className="btn btn-outline">
+                        MORE INFO
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))
             ) : (
               <div className="mt-14">
-                {jobs?.map((job: any, index: any) => (
+                {jobs.map((job: any, index: any) => (
                   <div
                     key={index}
                     className="collapse border collapse-arrow p-2"
@@ -133,7 +152,9 @@ export default function Home({ jobs }: any) {
                     <div className="collapse-content">
                       <div
                         className="pt-8"
-                        dangerouslySetInnerHTML={{ __html: job.jobDescription }}
+                        dangerouslySetInnerHTML={{
+                          __html: job.jobDescription,
+                        }}
                       ></div>
                       <div className="flex justify-between pt-6">
                         <a
@@ -158,68 +179,6 @@ export default function Home({ jobs }: any) {
               </div>
             )}
           </ul>
-
-          {/* {!filteredJobs.length && (
-            <div className="mt-14">
-              {jobs?.map((job: any, index: any) => (
-                <div key={index} className="collapse border collapse-arrow p-2">
-                  <input type="checkbox" className="" />
-                  <div className="collapse-title">
-                    <div className="text-sm font-semibold text-blue-500">
-                      {job.company.name}
-                    </div>
-                    <div className="pb-2">
-                      <h1 className="text-2xl font-regular text-gray-700 dark:text-white">
-                        {job.title}
-                      </h1>
-                      <h3 className="text-sm">{job.jobLocation}</h3>
-                    </div>
-
-                    <div className="space-x-4">
-                      {job.remote && (
-                        <span className=" lg:px-[.7em] lg:py-[.3em] rounded-md bg-cyan-200 text-xs text-cyan-800">
-                          remote
-                        </span>
-                      )}
-                      {job.experience === "part time" && (
-                        <span className=" lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-md text-xs text-indigo-800 ">
-                          part time
-                        </span>
-                      )}
-                      {job.employmentType === "entry level" && (
-                        <span className=" lg:px-[.7em] lg:py-[.3em] rounded-md bg-cyan-500 text-xs ">
-                          entry level
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="collapse-content">
-                    <div
-                      className="pt-8"
-                      dangerouslySetInnerHTML={{ __html: job.jobDescription }}
-                    ></div>
-                    <div className="flex justify-between pt-6">
-                      <a
-                        href={job.applicationUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <button
-                          type="button"
-                          className="btn btn-outline btn-primary"
-                        >
-                          APPLY NOW
-                        </button>
-                      </a>
-                      <button type="button" className="btn btn-outline">
-                        MORE INFO
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )} */}
         </div>
       </main>
     </>
@@ -237,18 +196,4 @@ export async function getServerSideProps() {
   } catch (e) {
     console.error(e);
   }
-}
-
-{
-  /* {job.company.logoUrl && (
-                  // <Image
-                  //   src={`/${job.company.logoUrl.name}`}
-                  //   alt="default"
-                  //   height={100}
-                  //   width={100}
-                  // />
-                  // <div className="h-30 w-30">
-                  //   <img src={job.company.logoUrl} alt="default" />
-                  // </div>
-                )} */
 }
