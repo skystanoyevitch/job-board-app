@@ -18,6 +18,8 @@ export function JobSearchForm({
         <div className="flex justify-center space-x-10">
           <input
             type="text"
+            autoComplete="true"
+            autoCapitalize="true"
             className="input input-bordered w-full input-lg"
             placeholder="keyword"
             name="title"

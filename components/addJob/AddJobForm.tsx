@@ -28,23 +28,24 @@ export function AddJobForm({
         className="container mx-auto w-1/2 flex flex-col space-y-10"
         onSubmit={handleSubmit}
       >
-        <div className="flex justify-center">
+        <div className="justify-center">
+          <label className="label">
+            <span className="label-text text-xl font-bold">Title</span>
+          </label>
           <input
             type="text"
             className="input input-bordered w-full input-lg"
-            placeholder="title"
             onChange={(e) => setJob({ ...job, title: e.target.value })}
             value={job.title}
           />
         </div>
         <div className="w-full">
           <label className="label">
-            <span className="label-text">Location</span>
+            <span className="label-text text-xl font-bold">Location</span>
           </label>
           <input
             type="text"
             className="input input-bordered w-full input-lg"
-            placeholder="location"
             onChange={(e) =>
               setJob({
                 ...job,
@@ -59,7 +60,7 @@ export function AddJobForm({
             <span className="label-text">Remote</span>
             <input
               type="checkbox"
-              className="checkbox checkbox-success"
+              className="checkbox"
               onChange={() => setJob({ ...job, remote: !job.remote })}
             />
           </label>
@@ -69,19 +70,19 @@ export function AddJobForm({
           <div className="mt-6 flex">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge badge-lg rounded-md badge-accent badge-outline"
+                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
                 onClick={() => setJob({ ...job, experience: "entry level" })}
               >
                 entry level
               </div>
               <div
-                className="badge badge-lg rounded-md badge-secondary badge-outline"
+                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
                 onClick={() => setJob({ ...job, experience: "mid level" })}
               >
                 mid level
               </div>
               <div
-                className="badge badge-lg rounded-md badge-accent badge-outline"
+                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
                 onClick={() => setJob({ ...job, experience: "senior level" })}
               >
                 senior level
@@ -94,19 +95,19 @@ export function AddJobForm({
           <div className="mt-6">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge badge-lg rounded-md badge-outline"
+                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
                 onClick={() => setJob({ ...job, employmentType: "part time" })}
               >
                 part time
               </div>
               <div
-                className="badge badge-lg rounded-md badge-outline"
+                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
                 onClick={() => setJob({ ...job, employmentType: "full time" })}
               >
                 full time
               </div>
               <div
-                className="badge badge-lg rounded-md badge-outline"
+                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
                 onClick={() => setJob({ ...job, employmentType: "contract" })}
               >
                 contract

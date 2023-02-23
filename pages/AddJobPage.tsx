@@ -10,7 +10,7 @@ const createJob: createJobType = {
   title: "",
   remote: false,
   experience: "",
-  employmentType: false,
+  employmentType: "",
   jobDescription: () => EditorState.createEmpty(),
   jobLocation: [],
   company: { name: "", logoUrl: null },
@@ -58,7 +58,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
     <>
       <section className="container mx-auto mt-20">
         <h1 className="text-center text-5xl font-black pb-20">
-          Add a Job for free
+          Add a job posting for free!
         </h1>
         <AddJobForm
           handleSubmit={handleSubmit}
