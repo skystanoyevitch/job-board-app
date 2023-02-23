@@ -7,7 +7,7 @@ import { IJobSearchProps } from "@/types/jobTypes";
 
 export function JobSearch({
   queryTitle,
-
+  handleClick,
   titleSearchResults,
 }: IJobSearchProps) {
   return (
@@ -15,6 +15,7 @@ export function JobSearch({
       <JobSearchForm
         queryTitle={queryTitle}
         titleSearchResults={titleSearchResults}
+        handleClick={handleClick}
       />
       <JobSearchResults />
     </div>
