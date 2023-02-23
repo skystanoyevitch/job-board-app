@@ -1,6 +1,17 @@
 import { IJobSearchProps } from "@/types/jobTypes";
 
-export function JobSearchForm({ titleSearchResults }: IJobSearchProps) {
+export function JobSearchForm({
+  titleSearchResults,
+  handleClick,
+}: IJobSearchProps) {
+  const filterTags = [
+    "remote",
+    "full time",
+    "part time",
+    "entry level",
+    "senior level",
+    "mid level",
+  ];
   return (
     <>
       <form action="" className="mt-20 container mx-auto w-1/2 form-control">
@@ -22,24 +33,17 @@ export function JobSearchForm({ titleSearchResults }: IJobSearchProps) {
           />
         </div>
         <div className="flex my-4 space-x-4 justify-center">
-          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
-            remote
-          </div>
-          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
-            full time
-          </div>
-          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
-            part time
-          </div>
-          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
-            entry level
-          </div>
-          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
-            senior
-          </div>
-          <div className="badge badge-outline rounded-none p-4 cursor-pointer">
-            mid level
-          </div>
+          {filterTags.map((tagName, index) => {
+            return (
+              <div
+                key={index}
+                className="badge badge-outline rounded-none p-4 cursor-pointer hover:bg-cyan-400 hover:text-white"
+                onClick={() => handleClick(tagName)}
+              >
+                {tagName}
+              </div>
+            );
+          })}
         </div>
       </form>
     </>
