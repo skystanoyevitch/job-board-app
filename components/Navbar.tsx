@@ -33,7 +33,7 @@ export function Navbar(props: NavProps) {
 
           <button
             type="button"
-            className="btn btn-outline btn-primary"
+            className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent "
             onClick={handleClick}
           >
             <span className="">Post Job for Free</span>
