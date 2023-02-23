@@ -95,19 +95,19 @@ export function AddJobForm({
             <div className="cursor-pointer flex space-x-4">
               <div
                 className="badge badge-lg rounded-md badge-outline"
-                onClick={() => setJob({ ...job, experience: "part time" })}
+                onClick={() => setJob({ ...job, employmentType: "part time" })}
               >
                 part time
               </div>
               <div
                 className="badge badge-lg rounded-md badge-outline"
-                onClick={() => setJob({ ...job, experience: "full time" })}
+                onClick={() => setJob({ ...job, employmentType: "full time" })}
               >
                 full time
               </div>
               <div
                 className="badge badge-lg rounded-md badge-outline"
-                onClick={() => setJob({ ...job, experience: "contract" })}
+                onClick={() => setJob({ ...job, employmentType: "contract" })}
               >
                 contract
               </div>
