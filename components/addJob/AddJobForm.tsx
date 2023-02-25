@@ -12,6 +12,7 @@ export interface IAddJobFormProps {
   setJob: React.Dispatch<React.SetStateAction<createJobType>>;
   editor: EditorState;
   setEditor: React.Dispatch<React.SetStateAction<EditorState>>;
+  errorMessage: string;
 }
 
 export function AddJobForm({
@@ -20,6 +21,7 @@ export function AddJobForm({
   setJob,
   editor,
   setEditor,
+  errorMessage,
 }: IAddJobFormProps) {
   return (
     <>
@@ -30,7 +32,9 @@ export function AddJobForm({
       >
         <div className="justify-center">
           <label className="label">
-            <span className="label-text text-xl font-bold">Title</span>
+            <span className="label-text text-xl font-bold">
+              Title (<span className="text-red-600">*</span>)
+            </span>
           </label>
           <input
             type="text"
@@ -38,6 +42,9 @@ export function AddJobForm({
             onChange={(e) => setJob({ ...job, title: e.target.value })}
             value={job.title}
           />
+          <div className="text-red-500">
+            {job.title === "" || (undefined && errorMessage)}
+          </div>
         </div>
         <div className="w-full">
           <label className="label">
@@ -66,7 +73,9 @@ export function AddJobForm({
           </label>
         </div>
         <div className="">
-          <h2 className="text-xl font-bold">Experience</h2>
+          <h2 className="text-xl font-bold">
+            Experience (<span className="text-red-600">*</span>)
+          </h2>
           <div className="mt-6 flex">
             <div className="cursor-pointer flex space-x-4">
               <div
@@ -89,9 +98,12 @@ export function AddJobForm({
               </div>
             </div>
           </div>
+          <div className="text-red-500">{!job.experience && errorMessage}</div>
         </div>
         <div className="">
-          <h2 className="text-xl font-bold">Employment type</h2>
+          <h2 className="text-xl font-bold">
+            Employment type (<span className="text-red-600">*</span>)
+          </h2>
           <div className="mt-6">
             <div className="cursor-pointer flex space-x-4">
               <div
@@ -114,9 +126,14 @@ export function AddJobForm({
               </div>
             </div>
           </div>
+          <div className="text-red-500">
+            {!job.employmentType && errorMessage}
+          </div>
         </div>
         <div className="">
-          <h2 className="text-xl font-bold">Job Description</h2>
+          <h2 className="text-xl font-bold">
+            Job Description (<span className="text-red-600">*</span>)
+          </h2>
           <Editor
             editorState={editor}
             onEditorStateChange={setEditor}
@@ -124,11 +141,16 @@ export function AddJobForm({
             wrapperClassName="h-96 rounded-md border border-opacity-20 mt-6"
             editorClassName=""
           />
+          <div className="text-red-500">
+            {!editor.getCurrentContent() && errorMessage}
+          </div>
         </div>
         <div className="collapse border collapse-arrow">
           <input type="checkbox" />
           <div className="collapse-title">
-            <h2 className="text-xl font-bold">Company</h2>
+            <h2 className="text-xl font-bold">
+              Company (<span className="text-red-600">*</span>)
+            </h2>
             <p className="font-lite text-gray-500">
               name and details of the hiring company
             </p>
@@ -146,6 +168,10 @@ export function AddJobForm({
               }
               value={job.company.name}
             />
+            <div className="text-red-500">
+              {!job.company.name && errorMessage}
+            </div>
+
             <div>
               <label className="label">
                 <span className="label-text">Add Company Logo</span>
@@ -180,7 +206,9 @@ export function AddJobForm({
           <div className="collapse border collapse-arrow">
             <input type="checkbox" />
             <div className="collapse-title">
-              <h2 className="text-xl font-bold">How to Apply</h2>
+              <h2 className="text-xl font-bold">
+                How to Apply (<span className="text-red-600">*</span>)
+              </h2>
               <p className="font-lite text-gray-500">application URL</p>
             </div>
             <div className="collapse-content">
