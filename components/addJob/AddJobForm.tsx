@@ -23,6 +23,14 @@ export function AddJobForm({
   setEditor,
   errorMessage,
 }: IAddJobFormProps) {
+  // const checkURL = (e: any) => {
+  //   try {
+  //     const url = new URL(e.target.value);
+  //     console.log(url);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <>
       <form
@@ -42,9 +50,7 @@ export function AddJobForm({
             onChange={(e) => setJob({ ...job, title: e.target.value })}
             value={job.title}
           />
-          <div className="text-red-500">
-            {job.title === "" || (undefined && errorMessage)}
-          </div>
+          <div className="text-red-500">{job.title === "" && errorMessage}</div>
         </div>
         <div className="w-full">
           <label className="label">
@@ -142,7 +148,7 @@ export function AddJobForm({
             editorClassName=""
           />
           <div className="text-red-500">
-            {!editor.getCurrentContent() && errorMessage}
+            {!editor.getCurrentContent().hasText() && errorMessage}
           </div>
         </div>
         <div className="collapse border collapse-arrow">
@@ -224,6 +230,9 @@ export function AddJobForm({
                 }
                 value={job.applicationUrl}
               />
+              <div className="text-red-600">
+                {job.applicationUrl && errorMessage}
+              </div>
             </div>
           </div>
           <div className="collapse border collapse-arrow">
