@@ -44,6 +44,13 @@ export default function AddJobPage(props: IAddJobPageProps) {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
+    try {
+      new URL(job.applicationUrl);
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+
     // validate form fields before submitting //
     if (
       job.title !== "" &&
@@ -51,7 +58,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
       job.employmentType !== "" &&
       job.jobDescription === undefined &&
       Object.values(job.company.name !== "") &&
-      job.applicationUrl !== ""
+      new URL(job.applicationUrl)
     ) {
       const response = await fetch("http://localhost:3000/api/jobs", {
         method: "POST",
@@ -67,7 +74,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
       router.push({ pathname: homePageUrl, query: { name: html } });
     } else {
       setErrorMessage("Please fill in this field");
-      window.scrollTo(0, 0);
+      globalThis.scrollTo(0, 0);
     }
   };
 
