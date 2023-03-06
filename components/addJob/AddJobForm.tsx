@@ -1,9 +1,13 @@
 import React, { Dispatch, useEffect, useState } from "react";
-import { Editor, EditorState } from "react-draft-wysiwyg";
+import { EditorState } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createJobType } from "@/types/mongodb.connect";
-import { error } from "console";
+import dynamic from "next/dynamic";
 // import Image from "next/image";
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+);
 
 //types
 export interface IAddJobFormProps {
@@ -23,14 +27,6 @@ export function AddJobForm({
   setEditor,
   errorMessage,
 }: IAddJobFormProps) {
-  // const checkURL = (e: any) => {
-  //   try {
-  //     const url = new URL(e.target.value);
-  //     console.log(url);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   return (
     <>
       <form
@@ -143,9 +139,7 @@ export function AddJobForm({
           <Editor
             editorState={editor}
             onEditorStateChange={setEditor}
-            toolbarClassName=""
             wrapperClassName="h-96 rounded-md border border-opacity-20 mt-6"
-            editorClassName=""
           />
           <div className="text-red-500">
             {!editor.getCurrentContent().hasText() && errorMessage}
@@ -231,7 +225,7 @@ export function AddJobForm({
                 value={job.applicationUrl}
               />
               <div className="text-red-600">
-                {job.applicationUrl && errorMessage}
+                {!job.applicationUrl && errorMessage}
               </div>
             </div>
           </div>
