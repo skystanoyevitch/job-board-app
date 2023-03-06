@@ -24,7 +24,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const html = convertToHTML(editor.getCurrentContent());
 
-  console.log(typeof job.jobDescription);
+  // console.log(typeof job.jobDescription);
 
   const router = useRouter();
   const homePageUrl = "/";
@@ -41,24 +41,27 @@ export default function AddJobPage(props: IAddJobPageProps) {
     userEmail: job.userEmail,
   };
 
+  // function handler for submitting new Job post
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    try {
-      new URL(job.applicationUrl);
-      return true;
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(job);
+
+    // try {
+    //   new URL(job.applicationUrl);
+    //   return true;
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     // validate form fields before submitting //
     if (
       job.title !== "" &&
       job.experience !== "" &&
       job.employmentType !== "" &&
-      job.jobDescription === undefined &&
+      job.jobDescription !== undefined &&
       Object.values(job.company.name !== "") &&
-      new URL(job.applicationUrl)
+      job.applicationUrl !== ""
     ) {
       const response = await fetch("http://localhost:3000/api/jobs", {
         method: "POST",
@@ -69,11 +72,12 @@ export default function AddJobPage(props: IAddJobPageProps) {
         },
       });
       const data = await response.json();
-      // console.log(typeof data);
+      console.log(data);
 
       router.push({ pathname: homePageUrl, query: { name: html } });
     } else {
       setErrorMessage("Please fill in this field");
+      // if (typeof window !== "undefined") return window.scrollTo(0, 0);
       globalThis.scrollTo(0, 0);
     }
   };
