@@ -273,7 +273,6 @@ export default function Home({ jobs }: any) {
 export async function getServerSideProps() {
   try {
     const data = await getJobs();
-
     // console.log(data);
     return {
       props: { jobs: data },

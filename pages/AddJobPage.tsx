@@ -72,7 +72,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
         },
       });
       const data = await response.json();
-      console.log(data);
+      console.time(data);
 
       router.push({ pathname: homePageUrl, query: { name: html } });
     } else {
