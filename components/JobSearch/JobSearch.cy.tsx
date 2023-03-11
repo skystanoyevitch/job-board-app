@@ -9,10 +9,6 @@ const JobSearchTypes: IJobSearchProps = {
 };
 
 describe("<JobSearch />", () => {
-  // const queryTitle = ""
-  // const titleSearchResults = (e: any) => ();
-  // const handleClick = (tagName: any) => ()
-
   it("renders", () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
