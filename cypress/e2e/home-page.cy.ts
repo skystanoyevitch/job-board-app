@@ -3,3 +3,5 @@ describe("My First Test", () => {
     cy.visit("/");
   });
 });
+
+export {};
