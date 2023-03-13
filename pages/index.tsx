@@ -58,19 +58,21 @@ export default function Home({ jobs }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="container mx-auto mt-20">
-        <div className="text-center">
-          <h1 className="lg:text-6xl font-black pb-4">
+      <main className="container mx-auto mt-20 p-4 lg:p-0">
+        <div className="md:text-center">
+          <h1 className="text-3xl lg:text-6xl font-black pb-4">
             FIND THE LATEST TECH JOBS
           </h1>
-          <h3 className="text-xl">a job board curated for developers</h3>
+          <h3 className="text-xl md:text-2xl">
+            a job board curated for developers
+          </h3>
         </div>
         <JobSearch
           queryTitle={queryTitle}
           titleSearchResults={titleSearchResults}
           handleClick={handleClick}
         />
-        <div className="container mx-auto w-1/2">
+        <div className="container mx-auto lg:w-1/2">
           <ul className="">
             {queryTitle.title || queryTitle.jobLocation ? (
               filteredJobs.map((job: any) => (
@@ -89,17 +91,17 @@ export default function Home({ jobs }: any) {
                     <h3 className="text-sm">{job.jobLocation}</h3>
                     <div className="space-x-4">
                       {job.remote && (
-                        <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                        <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
                           remote
                         </span>
                       )}
                       {job.experience && (
-                        <span className=" lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                        <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
                           {job.experience}
                         </span>
                       )}
                       {job.employmentType && (
-                        <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
+                        <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
                           {job.employmentType}
                         </span>
                       )}
@@ -150,17 +152,17 @@ export default function Home({ jobs }: any) {
                       <h3 className="text-sm">{job.jobLocation}</h3>
                       <div className="space-x-4">
                         {job.remote && (
-                          <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                          <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
                             remote
                           </span>
                         )}
                         {job.experience && (
-                          <span className=" lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                          <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
                             {job.experience}
                           </span>
                         )}
                         {job.employmentType && (
-                          <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
+                          <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
                             {job.employmentType}
                           </span>
                         )}
@@ -217,17 +219,17 @@ export default function Home({ jobs }: any) {
 
                         <div className="space-x-4">
                           {job.remote && (
-                            <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
                               remote
                             </span>
                           )}
                           {job.experience && (
-                            <span className=" lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
                               {job.experience}
                             </span>
                           )}
                           {job.employmentType && (
-                            <span className=" lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
                               {job.employmentType}
                             </span>
                           )}
