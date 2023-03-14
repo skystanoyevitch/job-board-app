@@ -6,7 +6,7 @@ import { EditorState } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import { useRouter } from "next/router";
 
-const createJob: createJobType = {
+export const createJob: createJobType = {
   title: "",
   remote: false,
   experience: "",
