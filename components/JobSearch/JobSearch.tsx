@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { JobSearchForm } from "./JobSearchForm";
-import { JobSearchResults } from "./JobSearchResults";
+// import { JobSearchResults } from "./JobSearchResults";
 
 //type imports
 import { IJobSearchProps } from "@/types/jobTypes";
@@ -17,7 +17,7 @@ export function JobSearch({
         titleSearchResults={titleSearchResults}
         handleClick={handleClick}
       />
-      <JobSearchResults />
+      {/* <JobSearchResults /> */}
     </div>
   );
 }
