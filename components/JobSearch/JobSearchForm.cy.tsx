@@ -7,3 +7,5 @@
 //     cy.mount(<JobSearchForm />)
 //   })
 // })
+
+export {};
