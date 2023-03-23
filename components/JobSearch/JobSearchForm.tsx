@@ -42,7 +42,7 @@ export function JobSearchForm({
             return (
               <div
                 key={index}
-                className="badge badge-outline rounded-none cursor-pointer m-2 hover:bg-cyan-400 hover:text-white"
+                className="badge badge-lg badge-outline rounded-md text-md py-4 cursor-pointer m-2 hover:bg-cyan-400 hover:text-white hover:border-cyan-400"
                 onClick={() => handleClick(tagName)}
               >
                 {tagName}
