@@ -13,7 +13,7 @@ export const createJob: createJobType = {
   employmentType: "",
   jobDescription: () => EditorState.createEmpty(),
   jobLocation: [],
-  company: { name: "", logoUrl: null },
+  company: { name: "", logoUrl: "" },
   applicationUrl: "",
   userEmail: "",
 };
@@ -86,7 +86,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
     <>
       <section className="container mx-auto mt-20">
         <h1 className="text-center text-2xl md:text-5xl font-black pb-20">
-         <span className="text-cyan-400">|</span> Add a job posting for free!
+          <span className="text-cyan-400">|</span> Add a job posting for free!
         </h1>
         <AddJobForm
           handleSubmit={handleSubmit}
@@ -96,6 +96,8 @@ export default function AddJobPage(props: IAddJobPageProps) {
           setEditor={setEditor}
           errorMessage={errorMessage}
         />
+
+        {/* <img src={job.company.logoUrl} alt="" /> */}
       </section>
     </>
   );

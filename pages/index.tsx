@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { JobSearch } from "@/components/JobSearch/JobSearch";
 import { getJobs } from "./api/jobs";
@@ -207,6 +208,10 @@ export default function Home({ jobs }: any) {
                     >
                       <input type="checkbox" className="peer" />
                       <div className="collapse-title peer-checked:border-2 peer-hover:border-2">
+                        {job.company.logoUrl && (
+                          <img src={job.company.logoUrl} alt="my logo" />
+                        )}
+
                         <div className="text-sm font-regular text-blue-500">
                           {job.company.name}
                         </div>

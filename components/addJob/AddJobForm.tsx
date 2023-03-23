@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { Dispatch, useEffect, useState } from "react";
 import { EditorState } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createJobType } from "@/types/mongodb.connect";
 import dynamic from "next/dynamic";
+// import Image from "next/image";
 // import Image from "next/image";
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -27,6 +29,33 @@ export function AddJobForm({
   setEditor,
   errorMessage,
 }: IAddJobFormProps) {
+  const handleChange = (e: any) => {
+    // get base64 string //
+    const file = e.target.files[0];
+
+    const myLogo = URL.createObjectURL(file);
+    console.log(typeof myLogo);
+
+    if (!e.target.files) return;
+    setJob({
+      ...job,
+      company: {
+        ...job.company,
+        logoUrl: myLogo,
+      },
+    });
+    // const reader = new FileReader();
+    // reader.readAsDataURL(file);
+    // reader.onload = () => {
+    //   setJob({
+    //     ...job,
+    //     company: {
+    //       ...job.company,
+    //       logoUrl: reader.result,
+    //     },
+    //   });
+    // };
+  };
   return (
     <>
       <form
@@ -179,28 +208,19 @@ export function AddJobForm({
               <input
                 type="file"
                 className="file-input file-input-bordered w-full"
-                onChange={(e) => {
-                  if (!e.target.files) return;
-                  setJob({
-                    ...job,
-                    company: {
-                      ...job.company,
-                      logoUrl: URL.createObjectURL(e.target.files[0]),
-                    },
-                  });
-                }}
+                onChange={handleChange}
               />
-              {/* {job.company.logoUrl && (
-                <div>
-                  <Image
-                    src={`/${job.company.logoUrl.name}`}
-                    alt="preview"
-                    height={60}
-                    width={60}
-                  />
-                  <img src={job.company.logoUrl} alt="default" />
+              {job.company.logoUrl !== "" && (
+                <div className="m-6">
+                  {/* <Image
+                    alt=""
+                    src={job.company.logoUrl}
+                    height={30}
+                    width={30}
+                  /> */}
+                  <img src={job.company.logoUrl} alt="my logo" />
                 </div>
-              )} */}
+              )}
             </div>
           </div>
           <div className="collapse border collapse-arrow">
@@ -255,12 +275,6 @@ export function AddJobForm({
         <button type="submit" className="btn">
           Submit
         </button>
-        {/* <Image
-          src={job.company.logoUrl}
-          alt="default"
-          height={130}
-          width={130}
-        /> */}
       </form>
     </>
   );
