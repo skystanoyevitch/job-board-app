@@ -15,7 +15,7 @@ export type createJobType = {
   jobLocation: string[];
   company: {
     name: string;
-    logoUrl: string | undefined;
+    logoUrl: any;
   };
   applicationUrl: string;
   userEmail: string;

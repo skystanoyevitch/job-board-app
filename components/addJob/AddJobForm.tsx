@@ -33,28 +33,28 @@ export function AddJobForm({
     // get base64 string //
     const file = e.target.files[0];
 
-    const myLogo = URL.createObjectURL(file);
-    console.log(typeof myLogo);
+    // const myLogo = URL.createObjectURL(file);
+    // console.log(typeof myLogo);
 
-    if (!e.target.files) return;
-    setJob({
-      ...job,
-      company: {
-        ...job.company,
-        logoUrl: myLogo,
-      },
-    });
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onload = () => {
-    //   setJob({
-    //     ...job,
-    //     company: {
-    //       ...job.company,
-    //       logoUrl: reader.result,
-    //     },
-    //   });
-    // };
+    // if (!e.target.files) return;
+    // setJob({
+    //   ...job,
+    //   company: {
+    //     ...job.company,
+    //     logoUrl: myLogo,
+    //   },
+    // });
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setJob({
+        ...job,
+        company: {
+          ...job.company,
+          logoUrl: reader.result,
+        },
+      });
+    };
   };
   return (
     <>
