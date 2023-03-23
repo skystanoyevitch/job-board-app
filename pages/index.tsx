@@ -208,9 +208,11 @@ export default function Home({ jobs }: any) {
                     >
                       <input type="checkbox" className="peer" />
                       <div className="collapse-title peer-checked:border-2 peer-hover:border-2">
-                        {job.company.logoUrl && (
-                          <img src={job.company.logoUrl} alt="my logo" />
-                        )}
+                        <div>
+                          {job.company.logoUrl && (
+                            <img src={job.company.logoUrl} alt="my logo" className="h-12 w-12 rounded-full" />
+                          )}
+                        </div>
 
                         <div className="text-sm font-regular text-blue-500">
                           {job.company.name}

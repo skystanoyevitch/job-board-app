@@ -211,13 +211,7 @@ export function AddJobForm({
                 onChange={handleChange}
               />
               {job.company.logoUrl !== "" && (
-                <div className="m-6">
-                  {/* <Image
-                    alt=""
-                    src={job.company.logoUrl}
-                    height={30}
-                    width={30}
-                  /> */}
+                <div className="m-6 h-12 w-12 rounded-full">
                   <img src={job.company.logoUrl} alt="my logo" />
                 </div>
               )}
