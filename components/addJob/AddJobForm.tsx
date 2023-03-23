@@ -31,12 +31,12 @@ export function AddJobForm({
     <>
       <form
         action="POST"
-        className="container mx-auto w-1/2 flex flex-col space-y-10"
+        className="container mx-auto w-5/6 md:w-3/4 lg:w-1/2 flex flex-col space-y-10"
         onSubmit={handleSubmit}
       >
         <div className="justify-center">
           <label className="label">
-            <span className="label-text text-xl font-bold">
+            <span className="label-text md:text-xl font-bold">
               Title (<span className="text-red-600">*</span>)
             </span>
           </label>
@@ -50,7 +50,7 @@ export function AddJobForm({
         </div>
         <div className="w-full">
           <label className="label">
-            <span className="label-text text-xl font-bold">Location</span>
+            <span className="label-text md:text-xl font-bold">Location</span>
           </label>
           <input
             type="text"
@@ -75,25 +75,25 @@ export function AddJobForm({
           </label>
         </div>
         <div className="">
-          <h2 className="text-xl font-bold">
+          <h2 className="md:text-xl font-bold">
             Experience (<span className="text-red-600">*</span>)
           </h2>
           <div className="mt-6 flex">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
                 onClick={() => setJob({ ...job, experience: "entry level" })}
               >
                 entry level
               </div>
               <div
-                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
                 onClick={() => setJob({ ...job, experience: "mid level" })}
               >
                 mid level
               </div>
               <div
-                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
                 onClick={() => setJob({ ...job, experience: "senior level" })}
               >
                 senior level
@@ -103,25 +103,25 @@ export function AddJobForm({
           <div className="text-red-500">{!job.experience && errorMessage}</div>
         </div>
         <div className="">
-          <h2 className="text-xl font-bold">
+          <h2 className="md:text-xl font-bold">
             Employment type (<span className="text-red-600">*</span>)
           </h2>
           <div className="mt-6">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
                 onClick={() => setJob({ ...job, employmentType: "part time" })}
               >
                 part time
               </div>
               <div
-                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
                 onClick={() => setJob({ ...job, employmentType: "full time" })}
               >
                 full time
               </div>
               <div
-                className="badge badge-lg text-md py-4 rounded-md badge-outline hover:badge hover:rounded-md hover:badge-lg focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
                 onClick={() => setJob({ ...job, employmentType: "contract" })}
               >
                 contract
@@ -133,13 +133,13 @@ export function AddJobForm({
           </div>
         </div>
         <div className="">
-          <h2 className="text-xl font-bold">
+          <h2 className="md:text-xl font-bold">
             Job Description (<span className="text-red-600">*</span>)
           </h2>
           <Editor
             editorState={editor}
             onEditorStateChange={setEditor}
-            wrapperClassName="h-96 rounded-md border border-opacity-20 mt-6"
+            wrapperClassName="h-96 border border-opacity-20 mt-6"
           />
           <div className="text-red-500">
             {!editor.getCurrentContent().hasText() && errorMessage}
@@ -148,7 +148,7 @@ export function AddJobForm({
         <div className="collapse border collapse-arrow">
           <input type="checkbox" />
           <div className="collapse-title">
-            <h2 className="text-xl font-bold">
+            <h2 className="md:text-xl font-bold">
               Company (<span className="text-red-600">*</span>)
             </h2>
             <p className="font-lite text-gray-500">
@@ -206,7 +206,7 @@ export function AddJobForm({
           <div className="collapse border collapse-arrow">
             <input type="checkbox" />
             <div className="collapse-title">
-              <h2 className="text-xl font-bold">
+              <h2 className="md:text-xl font-bold">
                 How to Apply (<span className="text-red-600">*</span>)
               </h2>
               <p className="font-lite text-gray-500">application URL</p>
@@ -232,7 +232,7 @@ export function AddJobForm({
           <div className="collapse border collapse-arrow">
             <input type="checkbox" />
             <div className="collapse-title">
-              <h2 className="text-xl font-bold">Account information</h2>
+              <h2 className="md:text-xl font-bold">Account information</h2>
               <p className="font-lite text-gray-500">
                 provide your email address for account creation, your email and
                 details of account will not show up in the job post.

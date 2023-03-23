@@ -85,8 +85,8 @@ export default function AddJobPage(props: IAddJobPageProps) {
   return (
     <>
       <section className="container mx-auto mt-20">
-        <h1 className="text-center text-5xl font-black pb-20">
-          Add a job posting for free!
+        <h1 className="text-center text-2xl md:text-5xl font-black pb-20">
+         <span className="text-cyan-400">|</span> Add a job posting for free!
         </h1>
         <AddJobForm
           handleSubmit={handleSubmit}
