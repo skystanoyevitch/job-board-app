@@ -63,7 +63,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
       Object.values(job.company.name !== "") &&
       job.applicationUrl !== ""
     ) {
-      const response = await fetch("http://localhost:3000/api/jobs", {
+      const response = await fetch("/api/jobs", {
         method: "POST",
         body: JSON.stringify(newJob),
         headers: {
