@@ -3,7 +3,7 @@ import Head from "next/head";
 import { JobSearch } from "@/components/JobSearch/JobSearch";
 import { getJobs } from "./api/jobs";
 // import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { exit } from "process";
 
 export default function Home({ jobs }: any) {
@@ -39,10 +39,7 @@ export default function Home({ jobs }: any) {
   };
 
   const handleClick = (tag: { id: number; name: string; active: string }) => {
-    console.log(tag);
     setTagStateFilters(!tagStateFilters);
-
-    console.log(tagStateFilters);
 
     if (tagStateFilters === true) {
       setTagState({ ...tag, active: "active" });
@@ -60,9 +57,9 @@ export default function Home({ jobs }: any) {
       setTagState({ ...tag, active: "" });
       exit;
     }
-
-    console.log(jobs);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <>
