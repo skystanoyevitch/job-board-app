@@ -9,6 +9,7 @@ export default function Home({ jobs }: any) {
   const [queryTitle, setQueryTitle] = useState(jobs);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [tagFilterState, setTagFilterState] = useState([]);
+  const [tagState, setTagState] = useState({ id: 0, name: "", active: "" });
   // const [employmentTypeTagState, setEmploymentTypeTagState] = useState([]);
 
   const titleSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,13 +36,13 @@ export default function Home({ jobs }: any) {
     }
   };
 
-  const handleClick = (tagName: string) => {
-    console.log(`${tagName} clicked!`);
-
+  const handleClick = (tag: { id: number; name: string; active: string }) => {
+    console.log(tag);
+    setTagState({ ...tag, active: "active" });
     const getTagFilters = jobs.filter((job: any) => {
-      if (tagName === job.experience) {
+      if (tag.name === job.experience) {
         return job.experience;
-      } else if (tagName === job.employmentType) {
+      } else if (tag.name === job.employmentType) {
         return job.employmentType;
       }
       return job.remote === true;
@@ -50,7 +51,6 @@ export default function Home({ jobs }: any) {
     console.log(getTagFilters);
   };
 
-  // console.log(tagFilterState);
   return (
     <>
       <Head>
@@ -72,6 +72,7 @@ export default function Home({ jobs }: any) {
           queryTitle={queryTitle}
           titleSearchResults={titleSearchResults}
           handleClick={handleClick}
+          tagState={tagState}
         />
         <div className="container mx-auto lg:w-1/2">
           <ul className="">
@@ -210,7 +211,11 @@ export default function Home({ jobs }: any) {
                       <div className="collapse-title peer-checked:border-2 peer-hover:border-2">
                         <div>
                           {job.company.logoUrl && (
-                            <img src={job.company.logoUrl} alt="my logo" className="h-12 w-12 rounded-full" />
+                            <img
+                              src={job.company.logoUrl}
+                              alt="my logo"
+                              className="h-12 w-12 rounded-full"
+                            />
                           )}
                         </div>
 
