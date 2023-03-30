@@ -6,6 +6,7 @@ const JobSearchTypes: IJobSearchProps = {
   queryTitle: "",
   titleSearchResults: () => {},
   handleClick: () => {},
+  tagState: {},
 };
 
 describe("<JobSearch />", () => {
@@ -16,6 +17,7 @@ describe("<JobSearch />", () => {
         queryTitle={JobSearchTypes.queryTitle}
         titleSearchResults={JobSearchTypes.titleSearchResults}
         handleClick={JobSearchTypes.handleClick}
+        tagState={JobSearchTypes.tagState}
       />
     );
   });
