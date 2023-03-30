@@ -4,12 +4,14 @@ import { JobSearch } from "@/components/JobSearch/JobSearch";
 import { getJobs } from "./api/jobs";
 // import Image from "next/image";
 import { useState } from "react";
+import { exit } from "process";
 
 export default function Home({ jobs }: any) {
   const [queryTitle, setQueryTitle] = useState(jobs);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [tagFilterState, setTagFilterState] = useState([]);
   const [tagState, setTagState] = useState({ id: 0, name: "", active: "" });
+  const [tagStateFilters, setTagStateFilters] = useState(false);
   // const [employmentTypeTagState, setEmploymentTypeTagState] = useState([]);
 
   const titleSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,17 +40,28 @@ export default function Home({ jobs }: any) {
 
   const handleClick = (tag: { id: number; name: string; active: string }) => {
     console.log(tag);
-    setTagState({ ...tag, active: "active" });
-    const getTagFilters = jobs.filter((job: any) => {
-      if (tag.name === job.experience) {
-        return job.experience;
-      } else if (tag.name === job.employmentType) {
-        return job.employmentType;
-      }
-      return job.remote === true;
-    });
-    setTagFilterState(getTagFilters);
-    console.log(getTagFilters);
+    setTagStateFilters(!tagStateFilters);
+
+    console.log(tagStateFilters);
+
+    if (tagStateFilters === true) {
+      setTagState({ ...tag, active: "active" });
+      const getTagFilters = jobs.filter((job: any) => {
+        if (tag.name === job.experience) {
+          return job.experience;
+        } else if (tag.name === job.employmentType) {
+          return job.employmentType;
+        }
+        return job.remote === true;
+      });
+      setTagFilterState(getTagFilters);
+      console.log(getTagFilters);
+    } else if (tagStateFilters === false) {
+      setTagState({ ...tag, active: "" });
+      exit;
+    }
+
+    console.log(jobs);
   };
 
   return (
@@ -136,7 +149,7 @@ export default function Home({ jobs }: any) {
                   </div>
                 </div>
               ))
-            ) : tagFilterState.length >= 1 ? (
+            ) : tagStateFilters && tagFilterState.length >= 1 ? (
               <div>
                 {tagFilterState.map((job: any) => (
                   <div

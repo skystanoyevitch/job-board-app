@@ -53,7 +53,9 @@ export function JobSearchForm({
               <div
                 key={index}
                 className={`${
-                  index === tagState.id && "bg-cyan-400 text-white"
+                  index === tagState.id &&
+                  tagState.active === "active" &&
+                  "bg-cyan-400 text-white"
                 } badge badge-lg badge-outline rounded-md text-md py-4 cursor-pointer m-2 hover:bg-cyan-400 hover:text-white hover:border-cyan-400`}
                 onClick={() => handleClick(tagName)}
               >
