@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
@@ -72,21 +73,69 @@ export default function Home() {
 						/>
 					</div>
 
-					<div className="flex">
-						<label
-							htmlFor="remote"
-							className=" label cursor-pointer"
-						>
-							<span className="label-text p-2">Remote</span>
-							<input
-								type="checkbox"
-								name="remote"
-								className="toggle toggle-success"
-							/>
-						</label>
-					</div>
-				</form>
-			</main>
-		</>
-	);
+                        <div className="space-x-4">
+                          {job.remote && (
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                              remote
+                            </span>
+                          )}
+                          {job.experience && (
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                              {job.experience}
+                            </span>
+                          )}
+                          {job.employmentType && (
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
+                              {job.employmentType}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="collapse-content peer-checked:bg-gray-50 dark:text-black">
+                        <div
+                          className="pt-8"
+                          dangerouslySetInnerHTML={{
+                            __html: job.jobDescription,
+                          }}
+                        ></div>
+                        <div className="flex justify-between pt-6">
+                          <a
+                            href={job.applicationUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <button
+                              type="button"
+                              className="btn btn-outline btn-primary"
+                            >
+                              APPLY NOW
+                            </button>
+                          </a>
+                          <button type="button" className="btn btn-outline">
+                            MORE INFO
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )
+            )}
+          </ul>
+        </div>
+      </main>
+    </>
+  );
+}
+
+export async function getServerSideProps() {
+  try {
+    const data = await getJobs();
+    // console.log(data);
+    return {
+      props: { jobs: data },
+    };
+  } catch (e) {
+    console.error(e);
+  }
 }
