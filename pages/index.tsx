@@ -33,7 +33,7 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className="container mx-auto">
-				<nav className="flex justify-between items-center">
+				<nav className="flex justify-between items-center m-8">
 					<div className="flex space-x-8">
 						{navLinks.map((link, i) => (
 							<ul key={i}>
