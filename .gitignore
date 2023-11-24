@@ -36,8 +36,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# database files
-# /database
-
-
-
+# Auto Generated PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
