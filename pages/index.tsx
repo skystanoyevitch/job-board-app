@@ -228,7 +228,6 @@ export default function Home({ jobs }: any) {
                             />
                           )}
                         </div>
-
                         <div className="text-sm font-regular text-blue-500">
                           {job.company.name}
                         </div>
