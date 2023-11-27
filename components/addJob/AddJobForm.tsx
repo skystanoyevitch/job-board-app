@@ -71,7 +71,9 @@ export function AddJobForm({
           </label>
           <input
             type="text"
-            className="input input-bordered w-full input-lg"
+            className={`input input-bordered w-full input-lg focus:outline-orange-500 focus:animate-pulse ${
+              job.title && "outline outline-blue-600"
+            }`}
             onChange={(e) => setJob({ ...job, title: e.target.value })}
             value={job.title}
           />
@@ -83,7 +85,9 @@ export function AddJobForm({
           </label>
           <input
             type="text"
-            className="input input-bordered w-full input-lg"
+            className={`input input-bordered w-full input-lg focus:outline-orange-500 focus:animate-pulse ${
+              job.jobLocation && "outline outline-blue-600"
+            }`}
             onChange={(e) =>
               setJob({
                 ...job,
