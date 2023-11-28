@@ -77,7 +77,7 @@ export function AddJobForm({
           <input
             type="text"
             className={`input input-bordered w-full md:input-lg ${
-              job.title != "" ? " input-success" : "input-primary"
+              job.title != "" ? " input-success" : "input"
             }`}
             onChange={(e) => setJob({ ...job, title: e.target.value })}
             value={job.title}
@@ -90,8 +90,8 @@ export function AddJobForm({
           </label>
           <input
             type="text"
-            className={`input input-bordered input-primary w-full md:input-lg ${
-              !job.jobLocation.includes("") ? "input-success" : "input-primary"
+            className={`input input-bordered w-full md:input-lg ${
+              !job.jobLocation.includes("") ? "input-success" : "input"
             }`}
             onChange={(e) =>
               setJob({
@@ -107,8 +107,8 @@ export function AddJobForm({
             <span className="label-text">Remote</span>
             <input
               type="checkbox"
-              className={`checkbox checkbox-primary ${
-                job.remote ? "checkbox-success" : "checkbox-primary"
+              className={`checkbox ${
+                job.remote ? "checkbox-success" : "checkbox"
               }`}
               onChange={() => setJob({ ...job, remote: !job.remote })}
             />

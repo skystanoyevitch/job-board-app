@@ -33,7 +33,7 @@ export function JobSearchForm({
             type="text"
             autoComplete="true"
             autoCapitalize="true"
-            className="input input-bordered w-full md:input-lg border-orange-700"
+            className="input input-bordered focus:input-success w-full md:input-lg"
             placeholder="keyword"
             name="title"
             onChange={titleSearchResults}
@@ -41,7 +41,7 @@ export function JobSearchForm({
 
           <input
             type="text"
-            className="input input-bordered w-full md:input-lg border-orange-700"
+            className="input input-bordered focus:input-success w-full md:input-lg"
             placeholder="location"
             onChange={titleSearchResults}
             name="jobLocation"
