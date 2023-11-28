@@ -4,8 +4,7 @@ import { EditorState } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createJobType } from "@/types/mongodb.connect";
 import dynamic from "next/dynamic";
-// import Image from "next/image";
-// import Image from "next/image";
+
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
   { ssr: false }
@@ -21,6 +20,12 @@ export interface IAddJobFormProps {
   errorMessage: string;
 }
 
+type ButtonsType = Array<{
+  id: string;
+  value: string;
+  text: string;
+}>;
+
 export function AddJobForm({
   handleSubmit,
   job,
@@ -29,17 +34,31 @@ export function AddJobForm({
   setEditor,
   errorMessage,
 }: IAddJobFormProps) {
-  console.log(job);
+  // console.log(job);
 
-  const [toggle, setToggle] = useState(false);
-  // const [buttonValue, setButtonValue] = useState("")
+  const [tag, setTag] = useState("");
+  const [buttonValue, setButtonValue] = useState<ButtonsType>([
+    { id: "0", value: "part time", text: "Part Time" },
+    { id: "1", value: "full time", text: "Full Time" },
+    { id: "2", value: "contract", text: "Contract" },
+  ]);
   //TODO: fix state for buttons
 
-  const clickToggler = (e: any) => {
+  const clickToggler = (e: any | string) => {
     const tagValue = e.target.value;
-    setToggle(!toggle);
-    //TODO: add toggle state for buttons
-    // setButtonValue(e.target.value)
+    setTag(tagValue);
+    console.log(tagValue);
+
+    setJob({ ...job, employmentType: tagValue });
+    // const updatedValue: any = buttonValue.map((btn) => {
+    //   if (btn.value === tagValue) {
+    //     // console.log(btn.text);
+    //     return { ...btn!, value: tagValue };
+    //   } else return btn;
+    // });
+    // setButtonValue(updatedValue);
+
+    // console.log(buttonValue);
   };
 
   return (
@@ -57,7 +76,7 @@ export function AddJobForm({
           </label>
           <input
             type="text"
-            className={`input input-bordered w-full input-lg ${
+            className={`input input-bordered w-full md:input-lg ${
               job.title != "" ? " input-success" : "input-primary"
             }`}
             onChange={(e) => setJob({ ...job, title: e.target.value })}
@@ -71,7 +90,7 @@ export function AddJobForm({
           </label>
           <input
             type="text"
-            className={`input input-bordered input-primary w-full input-lg ${
+            className={`input input-bordered input-primary w-full md:input-lg ${
               !job.jobLocation.includes("") ? "input-success" : "input-primary"
             }`}
             onChange={(e) =>
@@ -140,43 +159,24 @@ export function AddJobForm({
                 part time
               </button> */}
 
-              {/* <ul className="cursor-pointer flex space-x-4">
-                {buttons.map((button) => (
+              <ul className="cursor-pointer flex space-x-4">
+                {buttonValue.map((b) => (
                   <>
                     <li>
                       <button
-                        value={button.value}
-                        name={button.name}
+                        value={b.value}
+                        id={b.id}
                         onClick={clickToggler}
                         className={`${
-                          toggle && "badge badge-primary"
+                          tag === b.value && "badge badge-success"
                         } badge badge-outline md:badge-lg text-md py-3 md:py-4`}
                       >
-                        {button.text}
+                        {b.text}
                       </button>
                     </li>
                   </>
                 ))}
-              </ul> */}
-
-              {/* <button
-                value="full time"
-                className={`${
-                  toggle && "badge-outline"
-                }  badge badge-primary md:badge-lg text-md py-3 md:py-4`}
-                onClick={clickToggler}
-              >
-                full time
-              </button>
-              <button
-                value="contract"
-                className={`${
-                  toggle ? "badge" : "badge-outline"
-                } badge md:badge-lg text-md py-3 md:py-4`}
-                onClick={clickToggler}
-              >
-                contract
-              </button> */}
+              </ul>
             </div>
           </div>
           <div className="text-red-500">
