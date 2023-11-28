@@ -71,7 +71,7 @@ export default function Home({ jobs }: any) {
       </Head>
       <main className="container mx-auto mt-20 p-4 lg:p-0">
         <div className="md:text-center">
-          <h1 className="text-3xl lg:text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 pb-4">
+          <h1 className="text-3xl lg:text-6xl font-black bg-clip-text text-transparent bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-fuchsia-500 via-red-600 to-orange-400 pb-4">
             FIND THE LATEST TECH JOBS
           </h1>
           <h3 className="text-xl md:text-xl lg:text-2xl font-mono text-slate-600">
