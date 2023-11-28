@@ -29,33 +29,19 @@ export function AddJobForm({
   setEditor,
   errorMessage,
 }: IAddJobFormProps) {
-  const handleChange = (e: any) => {
-    // get base64 string //
-    const file = e.target.files[0];
+  console.log(job);
 
-    // const myLogo = URL.createObjectURL(file);
-    // console.log(typeof myLogo);
+  const [toggle, setToggle] = useState(false);
+  // const [buttonValue, setButtonValue] = useState("")
+  //TODO: fix state for buttons
 
-    // if (!e.target.files) return;
-    // setJob({
-    //   ...job,
-    //   company: {
-    //     ...job.company,
-    //     logoUrl: myLogo,
-    //   },
-    // });
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setJob({
-        ...job,
-        company: {
-          ...job.company,
-          logoUrl: reader.result,
-        },
-      });
-    };
+  const clickToggler = (e: any) => {
+    const tagValue = e.target.value;
+    setToggle(!toggle);
+    //TODO: add toggle state for buttons
+    // setButtonValue(e.target.value)
   };
+
   return (
     <>
       <form
@@ -71,8 +57,8 @@ export function AddJobForm({
           </label>
           <input
             type="text"
-            className={`input input-bordered w-full input-lg focus:outline-orange-500 focus:animate-pulse ${
-              job.title && "outline outline-blue-600"
+            className={`input input-bordered w-full input-lg ${
+              job.title != "" ? " input-success" : "input-primary"
             }`}
             onChange={(e) => setJob({ ...job, title: e.target.value })}
             value={job.title}
@@ -85,8 +71,8 @@ export function AddJobForm({
           </label>
           <input
             type="text"
-            className={`input input-bordered w-full input-lg focus:outline-orange-500 focus:animate-pulse ${
-              job.jobLocation && "outline outline-blue-600"
+            className={`input input-bordered input-primary w-full input-lg ${
+              !job.jobLocation.includes("") ? "input-success" : "input-primary"
             }`}
             onChange={(e) =>
               setJob({
@@ -102,7 +88,9 @@ export function AddJobForm({
             <span className="label-text">Remote</span>
             <input
               type="checkbox"
-              className="checkbox"
+              className={`checkbox checkbox-primary ${
+                job.remote ? "checkbox-success" : "checkbox-primary"
+              }`}
               onChange={() => setJob({ ...job, remote: !job.remote })}
             />
           </label>
@@ -114,19 +102,19 @@ export function AddJobForm({
           <div className="mt-6 flex">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 badge-outline hover:badge-primary hover:badge-outline"
                 onClick={() => setJob({ ...job, experience: "entry level" })}
               >
                 entry level
               </div>
               <div
-                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 badge-outline hover:badge-primary hover:badge-outline"
                 onClick={() => setJob({ ...job, experience: "mid level" })}
               >
                 mid level
               </div>
               <div
-                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
+                className="badge md:badge-lg text-md py-3 md:py-4 badge-outline hover:badge-primary hover:badge-outline"
                 onClick={() => setJob({ ...job, experience: "senior level" })}
               >
                 senior level
@@ -140,25 +128,55 @@ export function AddJobForm({
             Employment type (<span className="text-red-600">*</span>)
           </h2>
           <div className="mt-6">
-            <div className="cursor-pointer flex space-x-4">
-              <div
-                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
-                onClick={() => setJob({ ...job, employmentType: "part time" })}
+            <div className="">
+              {/* <button
+                value="part time"
+                name="partTime"
+                className={`${
+                  getTagName != "" ? "badge-outline" : "badge badge-primary"
+                } badge md:badge-lg text-md py-3 md:py-4`}
+                onClick={clickToggler}
               >
                 part time
-              </div>
-              <div
-                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
-                onClick={() => setJob({ ...job, employmentType: "full time" })}
+              </button> */}
+
+              {/* <ul className="cursor-pointer flex space-x-4">
+                {buttons.map((button) => (
+                  <>
+                    <li>
+                      <button
+                        value={button.value}
+                        name={button.name}
+                        onClick={clickToggler}
+                        className={`${
+                          toggle && "badge badge-primary"
+                        } badge badge-outline md:badge-lg text-md py-3 md:py-4`}
+                      >
+                        {button.text}
+                      </button>
+                    </li>
+                  </>
+                ))}
+              </ul> */}
+
+              {/* <button
+                value="full time"
+                className={`${
+                  toggle && "badge-outline"
+                }  badge badge-primary md:badge-lg text-md py-3 md:py-4`}
+                onClick={clickToggler}
               >
                 full time
-              </div>
-              <div
-                className="badge md:badge-lg text-md py-3 md:py-4 rounded-md badge-outline hover:badge hover:rounded-md focus:badge-accent"
-                onClick={() => setJob({ ...job, employmentType: "contract" })}
+              </button>
+              <button
+                value="contract"
+                className={`${
+                  toggle ? "badge" : "badge-outline"
+                } badge md:badge-lg text-md py-3 md:py-4`}
+                onClick={clickToggler}
               >
                 contract
-              </div>
+              </button> */}
             </div>
           </div>
           <div className="text-red-500">
@@ -205,7 +223,7 @@ export function AddJobForm({
               {!job.company.name && errorMessage}
             </div>
 
-            <div>
+            {/* <div>
               <label className="label">
                 <span className="label-text">Add Company Logo</span>
               </label>
@@ -219,7 +237,7 @@ export function AddJobForm({
                   <img src={job.company.logoUrl} alt="my logo" />
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
           <div className="collapse border collapse-arrow">
             <input type="checkbox" />
