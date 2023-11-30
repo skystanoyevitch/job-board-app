@@ -12,7 +12,7 @@ export type createJobType = {
   experience: string;
   employmentType: string;
   jobDescription: any; // TODO: possible type change in the future
-  jobLocation: string[];
+  jobLocation: string;
   company: {
     name: string;
     logoUrl: any;
