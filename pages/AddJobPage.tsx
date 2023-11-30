@@ -12,7 +12,7 @@ export const createJob: createJobType = {
   experience: "",
   employmentType: "",
   jobDescription: () => EditorState.createEmpty(),
-  jobLocation: [],
+  jobLocation: "",
   company: { name: "", logoUrl: "" },
   applicationUrl: "",
   userEmail: "",
