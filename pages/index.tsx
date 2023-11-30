@@ -7,35 +7,15 @@ import { useEffect, useState } from "react";
 import { exit } from "process";
 
 export default function Home({ jobs }: any) {
+  console.log(jobs);
   const [queryTitle, setQueryTitle] = useState(jobs);
-  const [filteredJobs, setFilteredJobs] = useState([]);
   const [tagFilterState, setTagFilterState] = useState([]);
   const [tagState, setTagState] = useState({ id: 0, name: "", active: "" });
   const [tagStateFilters, setTagStateFilters] = useState(false);
-  // const [employmentTypeTagState, setEmploymentTypeTagState] = useState([]);
 
   const titleSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setQueryTitle({ [name]: value, [name]: value });
-    console.log(queryTitle.jobLocation);
-
-    if (queryTitle.title !== "" || queryTitle.jobLocation !== "") {
-      const getFilter = jobs.filter((job: any) => {
-        const jobTitleSearch = job.title
-          .toLowerCase()
-          .includes(queryTitle.title?.toLowerCase());
-        const jobLocationSearch = job.jobLocation?.map(
-          (jobLocationString: any) => {
-            jobLocationString
-              .toLowerCase()
-              .includes(queryTitle.jobLocation?.toLowerCase());
-          }
-        );
-        if (queryTitle.title === "" || queryTitle.jobLocation === "") return;
-        return jobTitleSearch || jobLocationSearch;
-      });
-      setFilteredJobs(getFilter);
-    }
+    const { name } = e.target;
+    setQueryTitle({ [name]: e.target.value, [name]: e.target.value });
   };
 
   const handleClick = (tag: { id: number; name: string; active: string }) => {
@@ -58,8 +38,6 @@ export default function Home({ jobs }: any) {
       exit;
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -85,68 +63,137 @@ export default function Home({ jobs }: any) {
           tagState={tagState}
         />
         <div className="container mx-auto lg:w-1/2">
-          <ul className="">
-            {queryTitle.title || queryTitle.jobLocation ? (
-              filteredJobs.map((job: any) => (
-                <div
-                  key={job._id}
-                  className="collapse border collapse-arrow my-4"
-                >
-                  <input type="checkbox" className="" />
-                  <div className="collapse-title">
-                    <div className="text-sm text-blue-500">
-                      {job.company.name}
+          <ul>
+            {!queryTitle.title && !queryTitle.jobLocation
+              ? jobs.map((job: any) => (
+                  <li key={job._id} className="">
+                    <div className="collapse border collapse-arrow my-4">
+                      <input type="checkbox" className="" />
+                      <div className="collapse-title">
+                        <div className="text-sm text-blue-500">
+                          {job.company.name}
+                        </div>
+                        <h1 className="text-xl font-semibold text-gray-700 pb-2 dark:text-white">
+                          {job.title}
+                        </h1>
+                        <h3 className="text-sm">{job.jobLocation}</h3>
+                        <div className="space-x-4">
+                          {job.remote && (
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                              remote
+                            </span>
+                          )}
+                          {job.experience && (
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                              {job.experience}
+                            </span>
+                          )}
+                          {job.employmentType && (
+                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
+                              {job.employmentType}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="collapse-content">
+                        <div
+                          className="pt-8"
+                          dangerouslySetInnerHTML={{
+                            __html: job.jobDescription,
+                          }}
+                        ></div>
+                        <div className="flex justify-between pt-6">
+                          <a
+                            href={job.applicationUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <button
+                              type="button"
+                              className="btn btn-outline btn-primary"
+                            >
+                              APPLY NOW
+                            </button>
+                          </a>
+                          <button type="button" className="btn btn-outline">
+                            MORE INFO
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                    <h1 className="text-xl font-semibold text-gray-700 pb-2 dark:text-white">
-                      {job.title}
-                    </h1>
-                    <h3 className="text-sm">{job.jobLocation}</h3>
-                    <div className="space-x-4">
-                      {job.remote && (
-                        <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
-                          remote
-                        </span>
-                      )}
-                      {job.experience && (
-                        <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
-                          {job.experience}
-                        </span>
-                      )}
-                      {job.employmentType && (
-                        <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
-                          {job.employmentType}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="collapse-content">
-                    <div
-                      className="pt-8"
-                      dangerouslySetInnerHTML={{
-                        __html: job.jobDescription,
-                      }}
-                    ></div>
-                    <div className="flex justify-between pt-6">
-                      <a
-                        href={job.applicationUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <button
-                          type="button"
-                          className="btn btn-outline btn-primary"
-                        >
-                          APPLY NOW
-                        </button>
-                      </a>
-                      <button type="button" className="btn btn-outline">
-                        MORE INFO
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))
-            ) : tagStateFilters && tagFilterState.length >= 1 ? (
+                  </li>
+                ))
+              : jobs
+                  .filter((job: any) => {
+                    console.log(job.jobLocation);
+                    return queryTitle.title === "" ||
+                      queryTitle.jobLocation === ""
+                      ? job
+                      : job.title?.toLowerCase().includes(queryTitle.title) ||
+                          job.jobLocation
+                            ?.toLowerCase()
+                            .includes(queryTitle.jobLocation);
+                  })
+                  .map((job: any) => (
+                    <li key={job._id}>
+                      <div className="collapse border collapse-arrow my-4">
+                        <input type="checkbox" className="" />
+                        <div className="collapse-title">
+                          <div className="text-sm text-blue-500">
+                            {job.company.name}
+                          </div>
+                          <h1 className="text-xl font-semibold text-gray-700 pb-2 dark:text-white">
+                            {job.title}
+                          </h1>
+                          <h3 className="text-sm">{job.jobLocation}</h3>
+                          <div className="space-x-4">
+                            {job.remote && (
+                              <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                                remote
+                              </span>
+                            )}
+                            {job.experience && (
+                              <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                                {job.experience}
+                              </span>
+                            )}
+                            {job.employmentType && (
+                              <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
+                                {job.employmentType}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="collapse-content">
+                          <div
+                            className="pt-8"
+                            dangerouslySetInnerHTML={{
+                              __html: job.jobDescription,
+                            }}
+                          ></div>
+                          <div className="flex justify-between pt-6">
+                            <a
+                              href={job.applicationUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <button
+                                type="button"
+                                className="btn btn-outline btn-primary"
+                              >
+                                APPLY NOW
+                              </button>
+                            </a>
+                            <button type="button" className="btn btn-outline">
+                              MORE INFO
+                            </button>
+                          </div>
+                        </div>
+                      </div>{" "}
+                    </li>
+                  ))}
+          </ul>
+          {/* tagStateFilters && tagFilterState.length >= 1 ? (
               <div>
                 {tagFilterState.map((job: any) => (
                   <div
@@ -286,7 +333,7 @@ export default function Home({ jobs }: any) {
                 </div>
               )
             )}
-          </ul>
+          </ul> */}
         </div>
       </main>
     </>
