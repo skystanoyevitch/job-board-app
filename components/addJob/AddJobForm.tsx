@@ -96,7 +96,7 @@ export function AddJobForm({
             onChange={(e) =>
               setJob({
                 ...job,
-                jobLocation: [e.target.value],
+                jobLocation: e.target.value,
               })
             }
             value={job.jobLocation}
