@@ -32,7 +32,6 @@ export function JobSearchForm({
           <input
             type="text"
             autoComplete="true"
-            autoCapitalize="true"
             className="input input-bordered focus:input-success w-full md:input-lg"
             placeholder="keyword"
             name="title"
@@ -47,16 +46,16 @@ export function JobSearchForm({
             name="jobLocation"
           />
         </div>
-        <div className="my-4">
-          {tags.map((tagName, index) => {
+        <div className="my-4 space-x-4 text-center">
+          {tags.map((tagName) => {
             return (
               <div
-                key={index}
+                key={tagName.id}
                 className={`${
-                  index === tagState.id &&
+                  tagName.id === tagState.id &&
                   tagState.active === "active" &&
                   "bg-primary text-white border-primary"
-                } badge badge-lg badge-outline border-2 rounded-md text-md py-4 cursor-pointer m-2 hover:border-primary hover:border-2`}
+                } badge badge-sm badge-outline rounded-full text-sm py-4 cursor-pointer hover:badge`}
                 onClick={() => handleClick(tagName)}
               >
                 {tagName.name}
