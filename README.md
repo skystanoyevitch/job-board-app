@@ -1,19 +1,8 @@
+![logo](https://github.com/skystanoyevitch/job-board-app/assets/13388477/55940211-83b4-4cf5-9be4-3663670e6f8b)
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+# Developer Job Board
 
-
-# Job Board App
-
-A technology focused Job Board app for developers to add a new job postings.
-
-## Badges
-
-Add badges from somewhere like: [shields.io](https://shields.io/)
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
-
+A technology-focused Job Board app for developers.
 
 ## Authors
 
@@ -24,37 +13,30 @@ Add badges from somewhere like: [shields.io](https://shields.io/)
 
 - Automatic Light/dark mode 
 - Dynamic form inputs
-- Fully themed UI using daisyUI
+- Fully themed UI using DaisyUI
 
 
 ## Tech Stack
 
-**Client:** NextJS, TailwindCSS
+**Client:** NextJS, DaisyUI / TailwindCSS
 
-**Server:** NextJS
+**Server:** NextJS, NodeJS
 
 **Database** MongoDB
 
-## Lessons Learned
-
-What did you learn while building this project? What challenges did you face and how did you overcome them?
-
-
 ## Optimizations
 
-What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility
-
+- Increased Performance of search queries
 
 ## Roadmap
-
-- Add User Authentication
-
-- Add Dashboard for managing Job Postings
+- Ability to Login/Logout
+- User Authentication
+- Dashboard for managing Job Postings
 
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Developer-Tech-Jobs (1)](https://github.com/skystanoyevitch/job-board-app/assets/13388477/2de1eeec-4ae6-4779-938e-c391f90cb8c5)
 
 
 ## Feedback
