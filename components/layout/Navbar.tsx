@@ -14,7 +14,6 @@ export function Navbar(props: NavProps) {
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
 
-
   const handleClick = (e: any) => {
     router.push("/AddJobPage");
     setOpenMenu(!openMenu);
@@ -41,8 +40,12 @@ export function Navbar(props: NavProps) {
                 {props.navLinks.map((link, i) => (
                   <ul key={i}>
                     <li>
-                      <Link href={{pathname: link.url,
-                      query: () => setOpenMenu(!openMenu)}}>{link.name}</Link>
+                      <Link
+                        href={link.url}
+                        onClick={() => setOpenMenu(!openMenu)}
+                      >
+                        {link.name}
+                      </Link>
                     </li>
                   </ul>
                 ))}
@@ -64,9 +67,7 @@ export function Navbar(props: NavProps) {
             {props.navLinks.map((link, i) => (
               <ul key={i}>
                 <li>
-                  <Link href={link.url} onClick={() => setOpenMenu(!openMenu)}>
-                    {link.name}
-                  </Link>
+                  <Link href={link.url}>{link.name}</Link>
                 </li>
               </ul>
             ))}
