@@ -5,15 +5,6 @@ export function JobSearchForm({
   handleClick,
   tagState,
 }: IJobSearchProps) {
-  // const filterTags = [
-  //   "remote",
-  //   "full time",
-  //   "part time",
-  //   "entry level",
-  //   "senior level",
-  //   "mid level",
-  // ];
-
   const tags = [
     { id: 0, name: "remote", active: "" },
     { id: 1, name: "full time", active: "" },
@@ -46,7 +37,7 @@ export function JobSearchForm({
             name="jobLocation"
           />
         </div>
-        <div className="my-4 space-x-4 text-center">
+        <div className="my-4 md:space-x-4 md:text-center">
           {tags.map((tagName) => {
             return (
               <div
@@ -54,8 +45,8 @@ export function JobSearchForm({
                 className={`${
                   tagName.id === tagState.id &&
                   tagState.active === "active" &&
-                  "bg-primary text-white border-primary"
-                } badge badge-sm badge-outline rounded-full text-sm py-4 cursor-pointer hover:badge`}
+                  "badge border-success"
+                } badge badge-sm badge-outline rounded-full m-2 md:text-sm py-3 md:py-4 cursor-pointer hover:badge`}
                 onClick={() => handleClick(tagName)}
               >
                 {tagName.name}
