@@ -13,9 +13,11 @@ export interface NavProps {
 export function Navbar(props: NavProps) {
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
+
+
   const handleClick = (e: any) => {
-    // console.log("button clicked!");
     router.push("/AddJobPage");
+    setOpenMenu(!openMenu);
   };
   return (
     <>
@@ -33,13 +35,14 @@ export function Navbar(props: NavProps) {
         </div>
 
         {openMenu && (
-          <div className="h-[100vh] z-10">
-            <nav className="text-center flex flex-col">
-              <div className="space-y-8">
+          <div className="h-[100vh] z-10 container mx-auto w-2/3">
+            <nav className="p-8 space-y-8 text-center flex flex-col">
+              <div className="space-y-8 font-mono text-lg">
                 {props.navLinks.map((link, i) => (
                   <ul key={i}>
                     <li>
-                      <Link href={link.url}>{link.name}</Link>
+                      <Link href={{pathname: link.url,
+                      query: () => setOpenMenu(!openMenu)}}>{link.name}</Link>
                     </li>
                   </ul>
                 ))}
@@ -50,7 +53,7 @@ export function Navbar(props: NavProps) {
                 className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent"
                 onClick={handleClick}
               >
-                <span className="">Post Job for Free</span>
+                <span className="font-sans text-md">Post a Job</span>
               </button>
             </nav>
           </div>
@@ -61,7 +64,9 @@ export function Navbar(props: NavProps) {
             {props.navLinks.map((link, i) => (
               <ul key={i}>
                 <li>
-                  <Link href={link.url}>{link.name}</Link>
+                  <Link href={link.url} onClick={() => setOpenMenu(!openMenu)}>
+                    {link.name}
+                  </Link>
                 </li>
               </ul>
             ))}
