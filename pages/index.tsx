@@ -79,17 +79,17 @@ export default function Home({ jobs }: any) {
                         <h3 className="text-sm">{job.jobLocation}</h3>
                         <div className="space-x-4">
                           {job.remote && (
-                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
+                            <span className="px-2 py-[.3em] lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-100 text-xs text-cyan-800">
                               remote
                             </span>
                           )}
                           {job.experience && (
-                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
+                            <span className="px-2 py-[.3em] lg:px-[.7em] lg:py-[.3em] bg-orange-100 rounded-full text-xs text-orange-800 ">
                               {job.experience}
                             </span>
                           )}
                           {job.employmentType && (
-                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
+                            <span className="px-2 py-[.3em] lg:px-[.7em] lg:py-[.3em] rounded-full bg-blue-100 text-xs text-blue-900">
                               {job.employmentType}
                             </span>
                           )}
