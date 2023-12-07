@@ -86,7 +86,7 @@ export default function AddJobPage(props: IAddJobPageProps) {
     <>
       <section className="container mx-auto mt-20">
         <div className="text-center pb-20 space-y-4">
-          <h1 className="text-3xl md:text-5xl font-black uppercase bg-clip-text text-transparent bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-fuchsia-500 via-red-600 to-orange-400">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase bg-clip-text text-transparent bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-fuchsia-500 via-red-600 to-orange-400">
             Post Your Job here
           </h1>
           <p className="lg:text-xl font-mono">
