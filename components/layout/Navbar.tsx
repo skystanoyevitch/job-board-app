@@ -66,7 +66,7 @@ export function Navbar(props: NavProps) {
         )}
 
         <nav className="hidden md:visible md:flex justify-between items-center p-4">
-          <div className="flex space-x-8">
+          <div className="flex font-mono lg:text-xl space-x-8">
             {props.navLinks.map((link, i) => (
               <ul key={i}>
                 <li>
