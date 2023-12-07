@@ -22,7 +22,7 @@ export function Navbar(props: NavProps) {
   // };
   return (
     <>
-      <section className="w-full shadow-sm z-0">
+      <section className="w-full shadow-md z-0">
         <div className="md:hidden p-4">
           <button
             type="button"
@@ -36,7 +36,7 @@ export function Navbar(props: NavProps) {
         </div>
 
         {openMenu && (
-          <div className="h-[100vh] z-10 container mx-auto w-2/3">
+          <div className="z-10 container mx-auto w-2/3">
             <nav className="p-8 space-y-8 text-center flex flex-col">
               <div className="space-y-8 font-mono text-lg">
                 {props.navLinks.map((link, i) => (
