@@ -14,10 +14,12 @@ export function Navbar(props: NavProps) {
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
 
-  const handleClick = (e: any) => {
-    router.push("/AddJobPage");
-    setOpenMenu(!openMenu);
-  };
+  // const handleClick = (e: any) => {
+  //   setOpenMenu(!openMenu);
+
+  //   router.push("/AddJobPage");
+  //   // setOpenMenu((prevCheck) => !prevCheck);
+  // };
   return (
     <>
       <section className="w-full shadow-sm z-0">
@@ -49,15 +51,16 @@ export function Navbar(props: NavProps) {
                     </li>
                   </ul>
                 ))}
-              </div>
 
-              <button
-                type="button"
-                className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent"
-                onClick={handleClick}
-              >
-                <span className="font-sans text-md">Post a Job</span>
-              </button>
+                <button
+                  className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent"
+                  onClick={() => setOpenMenu(!openMenu)}
+                >
+                  <Link href="/AddJobPage">
+                    <span className="font-sans text-md">Post a Job</span>
+                  </Link>
+                </button>
+              </div>
             </nav>
           </div>
         )}
@@ -73,13 +76,12 @@ export function Navbar(props: NavProps) {
             ))}
           </div>
 
-          <button
-            type="button"
-            className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent "
-            onClick={handleClick}
+          <Link
+            className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent"
+            href="/AddJobPage"
           >
-            <span className="">Post Job for Free</span>
-          </button>
+            Post Job for Free
+          </Link>
         </nav>
       </section>
     </>
