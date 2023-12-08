@@ -129,10 +129,12 @@ export default function Home({ jobs }: any) {
                     return queryTitle.title === "" ||
                       queryTitle.jobLocation === ""
                       ? job
-                      : job.title?.toLowerCase().includes(queryTitle.title) ||
+                      : job.title
+                          ?.toLowerCase()
+                          .includes(queryTitle.title?.toLowerCase()) ||
                           job.jobLocation
                             ?.toLowerCase()
-                            .includes(queryTitle.jobLocation);
+                            .includes(queryTitle?.jobLocation.toLowerCase());
                   })
                   .map((job: any) => (
                     <li key={job._id}>
@@ -193,147 +195,6 @@ export default function Home({ jobs }: any) {
                     </li>
                   ))}
           </ul>
-          {/* tagStateFilters && tagFilterState.length >= 1 ? (
-              <div>
-                {tagFilterState.map((job: any) => (
-                  <div
-                    key={job._id}
-                    className="collapse border collapse-arrow my-4"
-                  >
-                    <input type="checkbox" className="peer" />
-                    <div className="collapse-title peer-checked:border-2 peer-hover:border-2">
-                      <div className="text-sm text-blue-500">
-                        {job.company.name}
-                      </div>
-                      <h1 className="text-xl font-semibold text-gray-700 pb-2 dark:text-white">
-                        {job.title}
-                      </h1>
-                      <h3 className="text-sm">{job.jobLocation}</h3>
-                      <div className="space-x-4">
-                        {job.remote && (
-                          <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
-                            remote
-                          </span>
-                        )}
-                        {job.experience && (
-                          <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
-                            {job.experience}
-                          </span>
-                        )}
-                        {job.employmentType && (
-                          <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
-                            {job.employmentType}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <div className="collapse-content peer-checked:bg-gray-50 dark:text-black ">
-                      <div
-                        className="pt-8"
-                        dangerouslySetInnerHTML={{
-                          __html: job.jobDescription,
-                        }}
-                      ></div>
-                      <div className="flex justify-between pt-6">
-                        <a
-                          href={job.applicationUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <button
-                            type="button"
-                            className="btn btn-outline btn-primary"
-                          >
-                            APPLY NOW
-                          </button>
-                        </a>
-                        <button type="button" className="btn btn-outline">
-                          MORE INFO
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              !queryTitle.title &&
-              !queryTitle.jobLocation && (
-                <div className="mt-14">
-                  {jobs.map((job: any, index: any) => (
-                    <div
-                      key={index}
-                      className="collapse border collapse-arrow p-2 my-4"
-                    >
-                      <input type="checkbox" className="peer" />
-                      <div className="collapse-title peer-checked:border-2 peer-hover:border-2">
-                        <div>
-                          {job.company.logoUrl && (
-                            <img
-                              src={job.company.logoUrl}
-                              alt="my logo"
-                              className="h-12 w-12 rounded-full"
-                            />
-                          )}
-                        </div>
-                        <div className="text-sm font-regular text-blue-500">
-                          {job.company.name}
-                        </div>
-                        <div className="pb-2">
-                          <h1 className="text-2xl font-bold text-gray-700 dark:text-white">
-                            {job.title}
-                          </h1>
-                          <h3 className="text-sm">{job.jobLocation}</h3>
-                        </div>
-
-                        <div className="space-x-4">
-                          {job.remote && (
-                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-200 text-xs text-cyan-800">
-                              remote
-                            </span>
-                          )}
-                          {job.experience && (
-                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] bg-indigo-200 rounded-full text-xs text-indigo-800 ">
-                              {job.experience}
-                            </span>
-                          )}
-                          {job.employmentType && (
-                            <span className="px-2 py-1 lg:px-[.7em] lg:py-[.3em] rounded-full bg-cyan-500 text-xs text-cyan-900">
-                              {job.employmentType}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="collapse-content peer-checked:bg-gray-50 dark:text-black">
-                        <div
-                          className="pt-8"
-                          dangerouslySetInnerHTML={{
-                            __html: job.jobDescription,
-                          }}
-                        ></div>
-                        <div className="flex justify-between pt-6">
-                          <a
-                            href={job.applicationUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <button
-                              type="button"
-                              className="btn btn-outline btn-primary"
-                            >
-                              APPLY NOW
-                            </button>
-                          </a>
-                          <button type="button" className="btn btn-outline">
-                            MORE INFO
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )
-            )}
-          </ul> */}
         </div>
       </main>
     </>
