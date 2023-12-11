@@ -40,17 +40,19 @@ export function JobSearchForm({
         <div className="my-4 md:space-x-4 md:text-center">
           {tags.map((tagName) => {
             return (
-              <div
-                key={tagName.id}
-                className={`${
-                  tagName.id === tagState.id &&
-                  tagState.active === "active" &&
-                  "badge border-success"
-                } badge badge-sm badge-outline rounded-full m-2 md:text-sm py-3 md:py-4 cursor-pointer hover:badge`}
-                onClick={() => handleClick(tagName)}
-              >
-                {tagName.name}
-              </div>
+              <>
+                <div
+                  key={tagName.id}
+                  className={`${
+                    tagName.id === tagState.id &&
+                    tagState.active === "active" &&
+                    "btn btn-success"
+                  } btn btn-xs m-2 md:btn-sm btn-outline rounded-full cursor-pointer lowercase`}
+                  onClick={() => handleClick(tagName)}
+                >
+                  {tagName.name}
+                </div>
+              </>
             );
           })}
         </div>
