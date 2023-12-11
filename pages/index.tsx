@@ -73,7 +73,7 @@ export default function Home({ jobs }: any) {
                         <div className="text-sm text-blue-500">
                           {job.company.name}
                         </div>
-                        <h1 className="text-xl font-semibold text-gray-700 pb-2 dark:text-white">
+                        <h1 className="text-xl font-semibold text-gray-700 pb-2">
                           {job.title}
                         </h1>
                         <h3 className="text-sm">{job.jobLocation}</h3>
