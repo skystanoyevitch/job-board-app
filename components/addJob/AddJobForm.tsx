@@ -121,19 +121,19 @@ export function AddJobForm({
           <div className="mt-6 flex">
             <div className="cursor-pointer flex space-x-4">
               <div
-                className="badge md:badge-lg text-md py-3 md:py-4 badge-outline hover:badge-primary hover:badge-outline"
+                className="btn btn-xs md:btn-sm btn-outline lowercase"
                 onClick={() => setJob({ ...job, experience: "entry level" })}
               >
                 entry level
               </div>
               <div
-                className="badge md:badge-lg text-md py-3 md:py-4 badge-outline hover:badge-primary hover:badge-outline"
+                className="btn btn-xs md:btn-sm btn-outline lowercase"
                 onClick={() => setJob({ ...job, experience: "mid level" })}
               >
                 mid level
               </div>
               <div
-                className="badge md:badge-lg text-md py-3 md:py-4 badge-outline hover:badge-primary hover:badge-outline"
+                className="btn btn-xs md:btn-sm btn-outline lowercase"
                 onClick={() => setJob({ ...job, experience: "senior level" })}
               >
                 senior level
@@ -148,17 +148,6 @@ export function AddJobForm({
           </h2>
           <div className="mt-6">
             <div className="">
-              {/* <button
-                value="part time"
-                name="partTime"
-                className={`${
-                  getTagName != "" ? "badge-outline" : "badge badge-primary"
-                } badge md:badge-lg text-md py-3 md:py-4`}
-                onClick={clickToggler}
-              >
-                part time
-              </button> */}
-
               <ul className="cursor-pointer flex space-x-4">
                 {buttonValue.map((b) => (
                   <>
@@ -168,8 +157,8 @@ export function AddJobForm({
                         id={b.id}
                         onClick={clickToggler}
                         className={`${
-                          tag === b.value && "badge badge-success"
-                        } badge badge-outline md:badge-lg text-md py-3 md:py-4`}
+                          tag === b.value && "btn btn-success"
+                        } btn btn-xs md:btn-sm btn-outline lowercase`}
                       >
                         {b.text}
                       </button>
