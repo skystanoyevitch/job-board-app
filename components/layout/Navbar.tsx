@@ -14,12 +14,6 @@ export function Navbar(props: NavProps) {
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
 
-  // const handleClick = (e: any) => {
-  //   setOpenMenu(!openMenu);
-
-  //   router.push("/AddJobPage");
-  //   // setOpenMenu((prevCheck) => !prevCheck);
-  // };
   return (
     <>
       <section className="w-full shadow-md z-0">
@@ -53,11 +47,17 @@ export function Navbar(props: NavProps) {
                 ))}
 
                 <button
-                  className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent"
+                  className="btn btn-primary btn-md"
                   onClick={() => setOpenMenu(!openMenu)}
                 >
                   <Link href="/AddJobPage">
                     <span className="font-sans text-md">Post a Job</span>
+                  </Link>
+                </button>
+
+                <button>
+                  <Link className="btn btn-md btn-outline" href="/">
+                    Login/Signup
                   </Link>
                 </button>
               </div>
@@ -76,12 +76,14 @@ export function Navbar(props: NavProps) {
             ))}
           </div>
 
-          <Link
-            className="btn btn-outline btn-primary dark:btn-outline dark:btn-accent"
-            href="/AddJobPage"
-          >
-            Post Job for Free
-          </Link>
+          <div className="space-x-4">
+            <Link className="btn btn-primary" href="/AddJobPage">
+              Post Job for Free
+            </Link>
+            <Link className="btn btn-outline" href="/">
+              Login/Signup{" "}
+            </Link>
+          </div>
         </nav>
       </section>
     </>
