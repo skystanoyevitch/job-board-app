@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { LoginSignup } from "../modal/LoginSignup";
 
 export interface NavProps {
   navLinks: {
@@ -10,9 +11,23 @@ export interface NavProps {
   }[];
 }
 
+// interface MyModal {
+//   open: boolean,
+//   close: boolean
+// }
+
 export function Navbar(props: NavProps) {
   const [openMenu, setOpenMenu] = useState(false);
-  const router = useRouter();
+  const [openModal, setOpenModal] = useState(false);
+
+  // const loginSignupModal = () => {
+  //   if (document) {
+  //     (document.getElementById("my_modal_1") as HTMLFormElement)?.showModal();
+  //   }
+  //   // console.log("clicked modal");
+  //   // setOpenModal(!openModal);
+  //   // console.log(openModal);
+  // };
 
   return (
     <>
@@ -56,10 +71,20 @@ export function Navbar(props: NavProps) {
                 </button>
 
                 <button>
-                  <Link className="btn btn-md btn-outline" href="/">
+                  <Link
+                    className="btn btn-outline -z-10"
+                    href="/"
+                    onClick={() => setOpenModal(true)}
+                  >
                     Login/Signup
                   </Link>
                 </button>
+                {openModal && (
+                  <LoginSignup
+                    open={openModal}
+                    close={() => setOpenModal(false)}
+                  />
+                )}
               </div>
             </nav>
           </div>
@@ -76,14 +101,21 @@ export function Navbar(props: NavProps) {
             ))}
           </div>
 
-          <div className="space-x-4">
+          <div className={`space-x-4`}>
             <Link className="btn btn-primary" href="/AddJobPage">
               Post Job for Free
             </Link>
-            <Link className="btn btn-outline" href="/">
-              Login/Signup{" "}
+            <Link
+              className="btn btn-outline -z-10"
+              href="/"
+              onClick={() => setOpenModal(true)}
+            >
+              Login/Signup
             </Link>
           </div>
+          {openModal && (
+            <LoginSignup open={openModal} close={() => setOpenModal(false)} />
+          )}
         </nav>
       </section>
     </>
