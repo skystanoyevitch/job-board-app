@@ -31,7 +31,7 @@ export function Navbar(props: NavProps) {
 
   return (
     <>
-      <section className="w-full shadow-md z-0">
+      <section className={`w-full shadow-md`}>
         <div className="md:hidden p-4">
           <button
             type="button"
@@ -90,7 +90,9 @@ export function Navbar(props: NavProps) {
           </div>
         )}
 
-        <nav className="hidden md:visible md:flex justify-between items-center p-4">
+        <nav
+          className={` hidden md:visible md:flex justify-between items-center p-4`}
+        >
           <div className="flex font-mono lg:text-xl space-x-8">
             {props.navLinks.map((link, i) => (
               <ul key={i}>
@@ -102,7 +104,7 @@ export function Navbar(props: NavProps) {
           </div>
 
           <div className={`space-x-4`}>
-            <Link className="btn btn-primary" href="/AddJobPage">
+            <Link className="btn btn-primary -z-10" href="/AddJobPage">
               Post Job for Free
             </Link>
             <Link
