@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { JobSearchForm } from "./JobSearchForm";
-// import { JobSearchResults } from "./JobSearchResults";
 
 //type imports
 import { IJobSearchProps } from "@/types/jobTypes";

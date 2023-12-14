@@ -11,23 +11,9 @@ export interface NavProps {
   }[];
 }
 
-// interface MyModal {
-//   open: boolean,
-//   close: boolean
-// }
-
 export function Navbar(props: NavProps) {
   const [openMenu, setOpenMenu] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
-  // const loginSignupModal = () => {
-  //   if (document) {
-  //     (document.getElementById("my_modal_1") as HTMLFormElement)?.showModal();
-  //   }
-  //   // console.log("clicked modal");
-  //   // setOpenModal(!openModal);
-  //   // console.log(openModal);
-  // };
 
   return (
     <>
