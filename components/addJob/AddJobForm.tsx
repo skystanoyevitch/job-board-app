@@ -34,8 +34,6 @@ export function AddJobForm({
   setEditor,
   errorMessage,
 }: IAddJobFormProps) {
-  // console.log(job);
-
   const [tag, setTag] = useState("");
   const [buttonValue, setButtonValue] = useState<ButtonsType>([
     { id: "0", value: "part time", text: "Part Time" },
@@ -48,17 +46,7 @@ export function AddJobForm({
     const tagValue = e.target.value;
     setTag(tagValue);
     console.log(tagValue);
-
     setJob({ ...job, employmentType: tagValue });
-    // const updatedValue: any = buttonValue.map((btn) => {
-    //   if (btn.value === tagValue) {
-    //     // console.log(btn.text);
-    //     return { ...btn!, value: tagValue };
-    //   } else return btn;
-    // });
-    // setButtonValue(updatedValue);
-
-    // console.log(buttonValue);
   };
 
   return (
@@ -110,7 +98,7 @@ export function AddJobForm({
               className={`checkbox ${
                 job.remote ? "checkbox-success" : "checkbox"
               }`}
-              onChange={() => setJob({ ...job, remote: !job.remote })}
+              onChange={() => setJob({ ...job, remote: "remote" })}
             />
           </label>
         </div>
