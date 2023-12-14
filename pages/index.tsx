@@ -2,41 +2,24 @@
 import Head from "next/head";
 import { JobSearch } from "@/components/JobSearch/JobSearch";
 import { getJobs } from "./api/jobs";
-// import Image from "next/image";
-import { useEffect, useState } from "react";
-import { exit } from "process";
+import { useState } from "react";
 
 export default function Home({ jobs }: any) {
-  console.log(jobs);
+  // console.log(jobs);
   const [queryTitle, setQueryTitle] = useState(jobs);
-  const [tagFilterState, setTagFilterState] = useState([]);
-  const [tagState, setTagState] = useState({ id: 0, name: "", active: "" });
-  const [tagStateFilters, setTagStateFilters] = useState(false);
+  const [tagState, setTagState] = useState(false);
+  const [tagInfo, setTagInfo] = useState({ id: 0, name: "" });
 
   const titleSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     setQueryTitle({ [name]: e.target.value, [name]: e.target.value });
   };
 
-  const handleClick = (tag: { id: number; name: string; active: string }) => {
-    setTagStateFilters(!tagStateFilters);
-
-    if (tagStateFilters === true) {
-      setTagState({ ...tag, active: "active" });
-      const getTagFilters = jobs.filter((job: any) => {
-        if (tag.name === job.experience) {
-          return job.experience;
-        } else if (tag.name === job.employmentType) {
-          return job.employmentType;
-        }
-        return job.remote === true;
-      });
-      setTagFilterState(getTagFilters);
-      console.log(getTagFilters);
-    } else if (tagStateFilters === false) {
-      setTagState({ ...tag, active: "" });
-      exit;
-    }
+  const handleClick = (tag: { id: number; name: string }) => {
+    console.log(tag);
+    setTagState((prev) => !prev);
+    setTagInfo({ ...tag, id: tag.id });
+    console.log(tagState);
   };
 
   return (
@@ -61,10 +44,11 @@ export default function Home({ jobs }: any) {
           titleSearchResults={titleSearchResults}
           handleClick={handleClick}
           tagState={tagState}
+          tagInfo={tagInfo}
         />
         <div className="container mx-auto lg:w-1/2">
           <ul>
-            {!queryTitle.title && !queryTitle.jobLocation
+            {!queryTitle.title && !queryTitle.jobLocation && tagState === false
               ? jobs.map((job: any) => (
                   <li key={job._id} className="">
                     <div className="collapse border collapse-arrow my-4">
@@ -125,7 +109,10 @@ export default function Home({ jobs }: any) {
                 ))
               : jobs
                   .filter((job: any) => {
-                    console.log(job.jobLocation);
+                    const filterTags =
+                      job.remote === tagInfo.name ||
+                      job.experience === tagInfo.name ||
+                      job.employmentType === tagInfo.name;
                     return queryTitle.title === "" ||
                       queryTitle.jobLocation === ""
                       ? job
@@ -134,7 +121,8 @@ export default function Home({ jobs }: any) {
                           .includes(queryTitle.title?.toLowerCase()) ||
                           job.jobLocation
                             ?.toLowerCase()
-                            .includes(queryTitle?.jobLocation.toLowerCase());
+                            .includes(queryTitle?.jobLocation?.toLowerCase()) ||
+                          filterTags;
                   })
                   .map((job: any) => (
                     <li key={job._id}>
@@ -194,6 +182,37 @@ export default function Home({ jobs }: any) {
                       </div>{" "}
                     </li>
                   ))}
+          </ul>
+          {/* {tagState &&
+            jobs
+              .filter((job: any) => {
+                return (
+                  job.remote === tagInfo.name ||
+                  job.experience === tagInfo.name ||
+                  job.employmentType === tagInfo.name
+                );
+              })
+              .map((job: any, i: any) => (
+                <div key={i}>
+                  <h1>{job.title}</h1>
+                </div>
+              ))} */}
+          <ul>
+            {/* {tags &&
+              jobs
+                .filter((item: any) => {
+                  console.log(item, tags);
+                  return (
+                    item.remote === tags ||
+                    item.experience === tags ||
+                    item.employmentType === tags
+                  );
+                })
+                .map((t: any, index: any) => (
+                  <li key={index}>
+                    <h1>{t}</h1>
+                  </li>
+                ))} */}
           </ul>
         </div>
       </main>
