@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 export const createJob: createJobType = {
   title: "",
-  remote: false,
+  remote: "",
   experience: "",
   employmentType: "",
   jobDescription: () => EditorState.createEmpty(),
