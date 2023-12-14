@@ -12,7 +12,7 @@ export default function Home({ jobs }: any) {
 
   const titleSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    setQueryTitle({ [name]: e.target.value, [name]: e.target.value });
+    setQueryTitle({ ...jobs, [name]: e.target.value, [name]: e.target.value });
   };
 
   const handleClick = (tag: { id: number; name: string }) => {
@@ -45,6 +45,7 @@ export default function Home({ jobs }: any) {
           handleClick={handleClick}
           tagState={tagState}
           tagInfo={tagInfo}
+          jobs={jobs}
         />
         <div className="container mx-auto lg:w-1/2">
           <ul>

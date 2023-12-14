@@ -4,4 +4,5 @@ export interface IJobSearchProps {
   handleClick: (tagName: any) => void;
   tagState: any;
   tagInfo: any;
+  jobs: [];
 }
