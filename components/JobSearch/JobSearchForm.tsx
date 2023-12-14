@@ -4,15 +4,18 @@ export function JobSearchForm({
   titleSearchResults,
   handleClick,
   tagState,
+  tagInfo,
 }: IJobSearchProps) {
   const tags = [
-    { id: 0, name: "remote", active: "" },
-    { id: 1, name: "full time", active: "" },
-    { id: 2, name: "part time", active: "" },
-    { id: 3, name: "entry level", active: "" },
-    { id: 4, name: "senior level", active: "" },
-    { id: 5, name: "mid level", active: "" },
+    { id: 0, name: "remote" },
+    { id: 1, name: "full time" },
+    { id: 2, name: "part time" },
+    { id: 3, name: "entry level" },
+    { id: 4, name: "senior level" },
+    { id: 5, name: "mid level" },
   ];
+
+  console.log(tagState);
   return (
     <>
       <form
@@ -44,10 +47,10 @@ export function JobSearchForm({
                 <div
                   key={tagName.id}
                   className={`${
-                    tagName.id === tagState.id &&
-                    tagState.active === "active" &&
-                    "btn btn-success"
-                  } btn btn-xs m-2 md:btn-sm btn-outline rounded-full cursor-pointer lowercase`}
+                    tagName.id === tagInfo.id && tagState
+                      ? "btn btn-sm btn-active btn-success cursor-pointer lowercase"
+                      : "btn btn-xs m-2 md:btn-sm btn-outline cursor-pointer lowercase"
+                  }`}
                   onClick={() => handleClick(tagName)}
                 >
                   {tagName.name}
