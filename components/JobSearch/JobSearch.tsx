@@ -10,6 +10,7 @@ export function JobSearch({
   handleClick,
   titleSearchResults,
   tagState,
+  tagInfo,
 }: IJobSearchProps) {
   return (
     <div>
@@ -18,6 +19,7 @@ export function JobSearch({
         titleSearchResults={titleSearchResults}
         handleClick={handleClick}
         tagState={tagState}
+        tagInfo={tagInfo}
       />
       {/* <JobSearchResults /> */}
     </div>
