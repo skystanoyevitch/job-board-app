@@ -1,6 +1,6 @@
 ![logo](https://github.com/skystanoyevitch/job-board-app/assets/13388477/55940211-83b4-4cf5-9be4-3663670e6f8b)
 
-# Developer Job Board
+# Developer Job Board (depreciated)
 
 A technology-focused Job Board app for developers.
 
